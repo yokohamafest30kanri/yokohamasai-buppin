@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { CartProvider } from ".././context/CartContext";
 
 export default function RootLayout({

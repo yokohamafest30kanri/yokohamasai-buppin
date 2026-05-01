@@ -1,6 +1,3 @@
-export const dynamic = "force-dynamic";export const revalidate = 0;
-export const generateStaticParams = () => [];
-
 import { Suspense } from "react";
 import RegisterCompleteClient from "./RegisterCompleteClient";
 
@@ -11,4 +8,3 @@ export default function RegisterCompletePage() {
     </Suspense>
   );
 }
-``
