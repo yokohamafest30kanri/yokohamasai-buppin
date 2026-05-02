@@ -137,7 +137,7 @@ export default function RegisterPage() {
         </div>
 
         <div>
-          <label>連絡先</label>
+          <label>連絡先（メールアドレス）</label>
           <input
             type="text"
             value={contact}
