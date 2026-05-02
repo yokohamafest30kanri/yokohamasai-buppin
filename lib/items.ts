@@ -6,6 +6,7 @@ export type Item = {
   description: string;
   size: string;
   note: string;
+  imageUrl?: string;
 };
 
 export const items: Item[] = [
