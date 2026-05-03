@@ -20,6 +20,7 @@ export default function ItemsLayout({
           padding: "12px 20px",
           borderBottom: "1px solid #ccc",
           marginBottom: "20px",
+          backgroundColor: "#e3f2fd",
         }}
       >
         <h2 style={{ fontSize: "16px", fontWeight: "bold" }}>
