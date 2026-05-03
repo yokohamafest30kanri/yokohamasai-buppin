@@ -46,4 +46,25 @@ export const items: Item[] = [
     size: "長さ200cm",
     note:"特になし。",
   },
+  {
+    id: "a3fsw",
+    name: "A3立て看板(白)",
+    maxQty: 11,
+    price: 0,
+    description: "通行人への周知等で使用できます。",
+    size: "横幅：50cm\n高さ：120cm\n奥行：2cm",
+    note: "特になし",
+  }
+
+
+  //↓これをコピペ
+  /*{
+    id: "",
+    name: "",
+    maxQty: ,
+    price: ,
+    description: "",
+    size: "",
+    note: "",
+  }*/
 ];
