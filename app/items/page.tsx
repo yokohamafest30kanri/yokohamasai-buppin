@@ -6,7 +6,7 @@ export default function ItemListPage() {
   return (
     <main style={{ padding: "40px" }}>
       <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>
-        物品一覧表
+        学内借用物品一覧表
       </h1>
 
       <div style={{ marginTop: "30px" }}>
