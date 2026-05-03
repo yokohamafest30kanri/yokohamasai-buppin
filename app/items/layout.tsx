@@ -19,7 +19,7 @@ export default function ItemsLayout({
         }}
       >
         <h2 style={{ fontSize: "16px", fontWeight: "bold" }}>
-          物品一覧
+          30th横浜祭 借用物品登録サイト
         </h2>
 
         <Link href="/cart">
