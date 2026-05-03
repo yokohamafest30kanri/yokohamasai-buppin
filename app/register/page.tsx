@@ -5,9 +5,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-// 🔥 Firestore用
+// 🔥 Firestore
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../lib/firebase";
+
+// ✉️ EmailJS
+import emailjs from "@emailjs/browser";
 
 export default function RegisterPage() {
   const { cart, clearCart } = useCart();
@@ -24,7 +27,6 @@ export default function RegisterPage() {
     0
   );
 
-  // ✅ Firestore 保存処理
   const handleSubmit = async () => {
     if (cart.length === 0) {
       alert("カートが空です");
@@ -34,7 +36,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      // ✅ Firestore に保存 & 登録ID取得
+      // ✅ Firestore に登録
       const docRef = await addDoc(collection(db, "registrations"), {
         groupName,
         leaderName,
@@ -46,12 +48,32 @@ export default function RegisterPage() {
         totalPrice,
       });
 
-      // ✅ 登録IDを完了ページに渡す
+      // ✅ 登録完了メール送信（EmailJS）
+      try {
+        await emailjs.send(
+          "service_yfa_buppin",     
+          "template_buppin",    
+          {
+            to_email: contact,
+            groupName,
+            leaderName,
+            items: cart
+              .map((item) => `・${item.name} × ${item.qty}`)
+              .join("\n"),
+            totalPrice,
+          },
+          "n9TC480wM5ZmokY9N"     // ← Public Key
+        );
+      } catch (mailError) {
+        console.error("メール送信エラー:", mailError);
+        // ✅ メール失敗でも登録処理は止めない
+      }
+
+      // ✅ 完了ページへ
       router.push(`/register/complete?id=${docRef.id}`);
 
-      // ✅ カートを空にする
+      // ✅ カートを空に
       clearCart();
-
     } catch (error) {
       console.error("Firestore保存エラー:", error);
       alert("登録に失敗しました。もう一度お試しください。");
@@ -88,9 +110,7 @@ export default function RegisterPage() {
                 marginBottom: "8px",
               }}
             >
-              <span>
-                {item.name}　{item.qty}個
-              </span>
+              <span>{item.name}　{item.qty}個</span>
               <span>
                 {item.price === 0
                   ? "0円"
@@ -139,7 +159,7 @@ export default function RegisterPage() {
         <div>
           <label>連絡先（メールアドレス）</label>
           <input
-            type="text"
+            type="email"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
             style={{ width: "98%", padding: "8px" }}
