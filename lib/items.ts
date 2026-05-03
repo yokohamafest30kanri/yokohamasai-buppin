@@ -52,10 +52,38 @@ export const items: Item[] = [
     maxQty: 11,
     price: 0,
     description: "通行人への周知等で使用できます。",
-    size: "横幅：50cm\n高さ：120cm\n奥行：2cm",
+    size: "横幅：50cm\n高さ：120cm\n奥行：30cm",
     note: "特になし",
-  }
+  },
+  {
+    id: "a3fsb",
+    name: "A3立て看板(黒)",
+    maxQty: 10,
+    price: 0,
+    description: "通行人への周知等で使用できます。",
+    size: "横幅：50cm\n高さ：120cm\n奥行：30cm",
+    note: "特になし",
+  },
+  {
+    id: "a1ssb",
+    name: "A1サインスタンド(両面)",
+    maxQty: 10,
+    price: 0,
+    description: "ポスターの展示等で使用できます。",
+    size: "横幅：80cm\n高さ：100cm\n奥行：30cm",
+    note: "特になし",
+  },
+  {
+    id: "a1sso",
+    name: "A1サインスタンド(片面)",
+    maxQty: 10,
+    price: 0,
+    description: "ポスターの展示等で使用できます。",
+    size: "横幅：80cm\n高さ：100cm\n奥行：30cm",
+    note: "特になし",
+  },
 
+];
 
   //↓これをコピペ
   /*{
@@ -66,5 +94,8 @@ export const items: Item[] = [
     description: "",
     size: "",
     note: "",
-  }*/
-];
+  },*/
+
+//git add lib/items.ts
+//git commit -m "add item list"
+//git push
