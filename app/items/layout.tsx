@@ -9,7 +9,11 @@ export default function ItemsLayout({
     <>
       {/* ===== items用ヘッダー ===== */}
       <header
-        style={{
+        style={{    
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
+
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
