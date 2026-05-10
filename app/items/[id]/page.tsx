@@ -68,7 +68,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
           <div style={{ marginTop: "20px" }}>
             <p>上限個数：{item.maxQty} 個</p>
             <p>
-              価格：
+              通常価格：
               {item.price === 0 ? " 無料" : ` ${item.price}円`}
             </p>
           </div>
