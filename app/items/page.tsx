@@ -1,97 +1,51 @@
 import Link from "next/link";
-import Image from "next/image";
-import { items } from "../../lib/items";
 
-export default function ItemListPage() {
+export default function ItemsTopPage() {
   return (
     <main style={{ padding: "40px" }}>
       <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>
-        学内借用物品一覧表
+        物品一覧
       </h1>
 
-      <div style={{ marginTop: "30px" }}>
-        {items.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              display: "flex",
-              border: "1px solid #ccc",
-              borderRadius: "8px",
-              padding: "20px",
-              marginBottom: "20px",
-              gap: "20px",
-            }}
-          >
-            {/* ===== 左：写真エリア ===== */}
-            <div style={{ width: "180px", flexShrink: 0 }}>
-              {item.imageUrl ? (
-                <Image
-                  src={item.imageUrl}
-                  alt={item.name}
-                  width={180}
-                  height={180}
-                  style={{
-                    objectFit: "cover",
-                    borderRadius: "4px",
-                  }}
-                />
-              ) : (
-                <div
-                  style={{
-                    width: "180px",
-                    height: "180px",
-                    border: "1px solid #999",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#f8f8f8",
-                    color: "#666",
-                    borderRadius: "4px",
-                  }}
-                >
-                  <span>写真</span>
-                </div>
-              )}
+      <ul style={{ marginTop: "30px", listStyle: "none", padding: 0 }}>
+        <li style={{ marginBottom: "20px" }}>
+          <Link href="/items/internal">
+            <button
+              style={{
+                padding: "12px 20px",
+                fontSize: "16px",
+                backgroundColor: "#e3f2fd",
+                border: "1px solid #333",
+                borderRadius: "6px",
+                cursor: "pointer",
+                width: "100%",
+                maxWidth: "300px",
+              }}
+            >
+              学内借用物品
+            </button>
+          </Link>
+        </li>
 
-              <Link href={`/items/${item.id}`}>
-                <button
-                  style={{
-                    width: "100%",
-                    marginTop: "10px",
-                    padding: "8px",
-                    backgroundColor: "#cde0ef",
-                    border: "1px solid #333",
-                    cursor: "pointer",
-                  }}
-                >
-                  詳細を見る
-                </button>
-              </Link>
-            </div>
-
-            {/* ===== 右：説明エリア ===== */}
-            <div style={{ flex: 1 }}>
-              <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>
-                {item.name}
-              </h2>
-
-              <p style={{ marginTop: "10px" }}>
-                {item.description}
-              </p>
-
-              <ul style={{ marginTop: "20px" }}>
-                <li>上限個数：{item.maxQty} 個</li>
-                <li>
-                  値段：
-                  {item.price === 0
-                    ? "無料"
-                    : `${item.price}円 / 個`}
-                </li>
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
+        <li>
+          <Link href="/items/external">
+            <button
+              style={{
+                padding: "12px 20px",
+                fontSize: "16px",
+                backgroundColor: "#e3f2fd",
+                border: "1px solid #333",
+                borderRadius: "6px",
+                cursor: "pointer",
+                width: "100%",
+                maxWidth: "300px",
+              }}
+            >
+              学外借用物品
+            </button>
+          </Link>
+        </li>
+      </ul>
     </main>
   );
 }
