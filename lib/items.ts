@@ -16,7 +16,7 @@ export const internalItems: Item[] = [
     maxQty: 3,
     price: 0,
     description: "展示や仕切りで使用できます。",
-    size: "横幅：100cm\n高さ：170cm\n奥行：3cm",
+    size: "横幅：100cm\n奥行：3cm\n高さ：170cm",
     note: "屋内でのみ使用可能です。",
   },
   {
@@ -25,7 +25,7 @@ export const internalItems: Item[] = [
     maxQty: 13,
     price: 0,
     description: "展示や仕切りで使用できます。",
-    size: "横幅：200cm\n高さ：170cm\n奥行：3cm",
+    size: "横幅：200cm\n奥行：3cm\n高さ：170cm",
     note:"屋内でのみ使用可能です。",
   },
   {
@@ -34,7 +34,7 @@ export const internalItems: Item[] = [
     maxQty: 1,
     price: 0,
     description: "展示や仕切りで使用できます。",
-    size: "横幅：300cm\n高さ：170cm\n奥行：3cm",
+    size: "横幅：300cm\n奥行：3cm\n高さ：170cm",
     note:"屋内でのみ使用可能です。",
   },
   {
@@ -52,7 +52,7 @@ export const internalItems: Item[] = [
     maxQty: 11,
     price: 0,
     description: "通行人への周知等で使用できます。",
-    size: "横幅：50cm\n高さ：120cm\n奥行：30cm",
+    size: "横幅：50cm\n奥行：30cm\n高さ：120cm",
     note: "特になし",
   },
   {
@@ -61,7 +61,7 @@ export const internalItems: Item[] = [
     maxQty: 10,
     price: 0,
     description: "通行人への周知等で使用できます。",
-    size: "横幅：50cm\n高さ：120cm\n奥行：30cm",
+    size: "横幅：50cm\n奥行：30cm\n高さ：120cm",
     note: "特になし",
   },
   {
@@ -70,7 +70,7 @@ export const internalItems: Item[] = [
     maxQty: 10,
     price: 0,
     description: "ポスターの展示等で使用できます。",
-    size: "横幅：80cm\n高さ：100cm\n奥行：30cm",
+    size: "横幅：80cm\n奥行：30cm\n高さ：100cm",
     note: "特になし",
   },
   {
@@ -79,7 +79,7 @@ export const internalItems: Item[] = [
     maxQty: 10,
     price: 0,
     description: "ポスターの展示等で使用できます。",
-    size: "横幅：80cm\n高さ：100cm\n奥行：30cm",
+    size: "横幅：80cm\n奥行：30cm\n高さ：100cm",
     note: "特になし",
   },
 
@@ -87,25 +87,51 @@ export const internalItems: Item[] = [
 
 export const externalItems: Item[] = [
   {
-    id: "tent",
-    name: "テント",
-    maxQty: 3,
-    price: 3000,
-    description: "学外から借用する大型テント",
-    size: "",
-    note: "",
+    id: "teppan",
+    name: "LP鉄板焼",
+    maxQty: 2,
+    price: 5940,
+    description: "鉄板系の調理で使用できます。",
+    size: "横幅：60cm\n奥行：55cm\n高さ：18cm",
+    note: "ガスはついておりません。ガスも登録してください。",
+  },
+  {
+    id: "takoyaki",
+    name: "LPタコ焼機",
+    maxQty: 2,
+    price: 5940,
+    description: "たこ焼き等の調理で使用できます。",
+    size: "高さ：51cm\n奥行：26cm\n高さ：18cm",
+    note: "ガスはついておりません。ガスも登録してください。",
+  },
+  {
+    id: "crepe",
+    name: "LPクレープ焼機",
+    maxQty: 2,
+    price: 5940,
+    description: "クレープ等の調理で使用できます。",
+    size: "横幅：55cm\n奥行：45cm\n高さ：23cm",
+    note: "ガスはついておりません。ガスも登録してください。",
+  },
+  {
+    id: "obanyaki",
+    name: "LP大判焼き機",
+    maxQty: 2,
+    price: 9900,
+    description: "大判焼き等の調理で使用できます。",
+    size: "横幅：68cm\n奥行：57cm\n高さ：28cm",
+    note: "ガスはついておりません。ガスも登録してください。\nあんさし・ヘラ・生地落としがついています。",
   },
 ];
-
 
   //↓これをコピペ
   /*{
     id: "",
     name: "",
-    maxQty: ,
-    price: ,
+    maxQty: 0,
+    price: 0,
     description: "",
-    size: "",
+    size: "横幅：cm\n奥行：cm\n高さ：cm",
     note: "",
   },*/
 
