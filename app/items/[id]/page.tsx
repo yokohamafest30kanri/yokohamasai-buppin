@@ -3,28 +3,27 @@ import Link from "next/link";
 import ItemDetailClient from "./ItemDetailClient";
 
 type PageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-export default function ItemDetailPage({ params }: PageProps) {
-  // ✅ パラメータを正規化
-  const normalizedId = decodeURIComponent(params.id).trim().toLowerCase();
+export default async function ItemDetailPage({ params }: PageProps) {
+  // ✅ params を await する
+  const { id } = await params;
+
+  // ✅ 念のため正規化
+  const normalizedId = decodeURIComponent(id).trim();
 
   // ✅ 学内・学外を統合
   const allItems = [...internalItems, ...externalItems];
 
-  // ✅ 正規化した id で検索
-  const item = allItems.find(
-    (i) => i.id.toLowerCase() === normalizedId
-  );
+  const item = allItems.find((i) => i.id === normalizedId);
 
   if (!item) {
     return (
       <main style={{ padding: "40px" }}>
         <h2>物品が見つかりません。</h2>
-        <p style={{ color: "#666" }}>
-          指定された物品ID: {normalizedId}
-        </p>
+        <p>ID: {normalizedId}</p>
+
         <Link href="/items">
           <button style={{ marginTop: "16px" }}>
             物品一覧に戻る
