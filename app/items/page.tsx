@@ -18,7 +18,7 @@ export default function ItemsTopPage() {
               lineHeight: 1.6,
             }}
           >
-            横浜祭実行委員会や学生団体連合会本部、大学施設課等の
+            横浜祭実行委員会や学生団体連合会本部、大学総務課等の
             大学内の団体の物品を借用できます。
           </p>
 
