@@ -94,6 +94,7 @@ export const externalItems: Item[] = [
     description: "鉄板系の調理で使用できます。",
     size: "横幅：60cm\n奥行：55cm\n高さ：18cm",
     note: "ガスはついておりません。ガスも登録してください。",
+    imageUrl: "/items/teppan.jpg",
   },
   {
     id: "takoyaki",
@@ -134,6 +135,8 @@ export const externalItems: Item[] = [
     size: "横幅：cm\n奥行：cm\n高さ：cm",
     note: "",
   },*/
+
+  //imageUrl: "/items/.jpg",
 
 //git add lib/items.ts
 //git commit -m "add item list"
