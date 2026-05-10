@@ -30,7 +30,7 @@ export default function ItemsLayout({
       >
         {/* ✅ 左：タイトル（トップページへのリンク） */}
         <Link
-          href="/items"
+          href="/"
           style={{
             textDecoration: "none",
             color: "inherit",
@@ -62,7 +62,7 @@ export default function ItemsLayout({
                     fontSize: "13px",
                   }}
                 >
-                  学内借用物品はこちら
+                  学内借用物品一覧へ
                 </button>
               </Link>
 
@@ -77,7 +77,7 @@ export default function ItemsLayout({
                     fontSize: "13px",
                   }}
                 >
-                  学外借用物品はこちら
+                  学外借用物品一覧へ
                 </button>
               </Link>
             </>
