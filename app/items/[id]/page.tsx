@@ -100,18 +100,20 @@ export default async function ItemDetailPage({ params }: PageProps) {
       {/* ✅ 追加：一覧へ戻るボタン ===== */}
       <div style={{ marginTop: "24px", textAlign: "center" }}>
         <Link href={isExternal ? "/items/external" : "/items/internal"}>
-          <button
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#eee",
-              border: "1px solid #333",
-              borderRadius: "4px",
-              cursor: "pointer",
+        <button
+          style={{
+            padding: "10px 20px",
+            backgroundColor: isExternal
+              ? "#F3E5F5" // 🟣 学外
+              : "#FFF9C4", // 🟡 学内
+            border: "1px solid #333",
+            borderRadius: "4px",
+            cursor: "pointer",
             }}
-          >
-            {isExternal
-              ? "学外物品一覧に戻る"
-              : "学内物品一覧に戻る"}
+        >
+          {isExternal
+            ? "学外物品一覧に戻る"
+            : "学内物品一覧に戻る"}
           </button>
         </Link>
       </div>
