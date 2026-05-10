@@ -7,13 +7,31 @@ type PageProps = {
 };
 
 export default function ItemDetailPage({ params }: PageProps) {
-  const { id } = params;
+  // ✅ パラメータを正規化
+  const normalizedId = decodeURIComponent(params.id).trim().toLowerCase();
 
+  // ✅ 学内・学外を統合
   const allItems = [...internalItems, ...externalItems];
-  const item = allItems.find((i) => i.id === id);
+
+  // ✅ 正規化した id で検索
+  const item = allItems.find(
+    (i) => i.id.toLowerCase() === normalizedId
+  );
 
   if (!item) {
-    return <p style={{ padding: "40px" }}>物品が見つかりません。</p>;
+    return (
+      <main style={{ padding: "40px" }}>
+        <h2>物品が見つかりません。</h2>
+        <p style={{ color: "#666" }}>
+          指定された物品ID: {normalizedId}
+        </p>
+        <Link href="/items">
+          <button style={{ marginTop: "16px" }}>
+            物品一覧に戻る
+          </button>
+        </Link>
+      </main>
+    );
   }
 
   return (
