@@ -113,6 +113,7 @@ export const externalItems: Item[] = [
     description: "クレープ等の調理で使用できます。",
     size: "横幅：55cm\n奥行：45cm\n高さ：23cm",
     note: "ガスはついておりません。ガスも登録してください。",
+    imageUrl: "/items/crepe.jpg",
   },
   {
     id: "obanyaki",
