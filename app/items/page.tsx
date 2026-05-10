@@ -27,7 +27,7 @@ export default function ItemsTopPage() {
               style={{
                 padding: "12px 20px",
                 fontSize: "16px",
-                backgroundColor: "#e3f2fd",
+                backgroundColor: "#FFF9C4", // 🟡 学内：薄い黄色
                 border: "1px solid #333",
                 borderRadius: "6px",
                 cursor: "pointer",
@@ -60,7 +60,7 @@ export default function ItemsTopPage() {
               style={{
                 padding: "12px 20px",
                 fontSize: "16px",
-                backgroundColor: "#e3f2fd",
+                backgroundColor: "#F3E5F5", // 🟣 学外：薄い紫
                 border: "1px solid #333",
                 borderRadius: "6px",
                 cursor: "pointer",
@@ -76,3 +76,4 @@ export default function ItemsTopPage() {
     </main>
   );
 }
+``
