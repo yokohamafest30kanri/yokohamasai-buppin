@@ -3,15 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-
-export const metadata = {
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-
-
 export default function ItemsLayout({
   children,
 }: {
