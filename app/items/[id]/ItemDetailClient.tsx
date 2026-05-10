@@ -53,12 +53,15 @@ export default function ItemDetailClient({ item }: Props) {
           {qty}
         </span>
 
-        {/* ＋ ボタン（上限あり） */}
+        {/* ＋ ボタン（✅ 上限のときは押せない） */}
         <button
           onClick={() => setQty((q) => Math.min(item.maxQty, q + 1))}
+          disabled={qty === item.maxQty}
           style={{
             width: "36px",
             height: "36px",
+            cursor: qty === item.maxQty ? "not-allowed" : "pointer",
+            opacity: qty === item.maxQty ? 0.4 : 1,
           }}
         >
           ＋
