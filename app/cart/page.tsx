@@ -41,7 +41,7 @@ export default function CartPage() {
               <div style={{ flex: 1 }}>
                 <p style={{ marginBottom: "6px" }}>{item.name}</p>
 
-                {/* 数量操作 */}
+                {/* ===== 数量操作 ===== */}
                 <div
                   style={{
                     display: "flex",
@@ -50,6 +50,7 @@ export default function CartPage() {
                     marginBottom: "6px",
                   }}
                 >
+                  {/* − ボタン */}
                   <button
                     onClick={() =>
                       updateQty(item.id, Math.max(1, item.qty - 1))
@@ -66,6 +67,7 @@ export default function CartPage() {
 
                   <span>{item.qty}</span>
 
+                  {/* ＋ ボタン（✅ 上限で無効化） */}
                   <button
                     onClick={() =>
                       updateQty(
@@ -73,6 +75,14 @@ export default function CartPage() {
                         Math.min(item.maxQty, item.qty + 1)
                       )
                     }
+                    disabled={item.qty === item.maxQty}
+                    style={{
+                      cursor:
+                        item.qty === item.maxQty
+                          ? "not-allowed"
+                          : "pointer",
+                      opacity: item.qty === item.maxQty ? 0.4 : 1,
+                    }}
                   >
                     ＋
                   </button>
@@ -122,20 +132,20 @@ export default function CartPage() {
               style={{
                 padding: "10px 14px",
                 border: "1px solid #333",
-                backgroundColor: "#FFF9C4", // 学内：薄い黄色
+                backgroundColor: "#FFF9C4",
                 cursor: "pointer",
               }}
             >
               学内借用物品を追加する
             </button>
-            </Link>
+          </Link>
 
           <Link href="/items/external">
             <button
               style={{
                 padding: "10px 14px",
                 border: "1px solid #333",
-                backgroundColor: "#F3E5F5", // 学外：薄い紫
+                backgroundColor: "#F3E5F5",
                 cursor: "pointer",
               }}
             >
