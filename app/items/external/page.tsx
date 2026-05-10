@@ -80,6 +80,7 @@ export default function ExternalItemListPage() {
                   style={{
                     marginTop: "16px",
                     padding: "8px 14px",
+                    minWidth: "160px",
                     backgroundColor: "#cde0ef",
                     border: "1px solid #333",
                     borderRadius: "4px",
