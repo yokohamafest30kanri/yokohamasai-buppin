@@ -9,7 +9,7 @@ export default function ItemsLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isItemsTopPage = pathname === "/items";
+  const isItemsTopPage = pathname === "/";
 
   return (
     <>
