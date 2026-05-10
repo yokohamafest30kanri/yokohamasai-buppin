@@ -15,10 +15,9 @@ export default function ItemDetailClient({ item }: Props) {
   const router = useRouter();
 
   const handleAddToCart = () => {
-    // ✅ 1. カートに追加
     addToCart(item, qty);
 
-    // ✅ 2. state更新を待ってから遷移（超重要）
+    // state反映後に遷移
     setTimeout(() => {
       router.push("/cart");
     }, 0);
@@ -26,39 +25,57 @@ export default function ItemDetailClient({ item }: Props) {
 
   return (
     <div style={{ marginTop: "15px" }}>
-      {/* 数量操作 */}
+      {/* ===== 数量操作 ===== */}
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: "10px",
-          marginBottom: "12px",
+          gap: "12px",
+          marginBottom: "16px",
         }}
       >
-        <button onClick={() => setQty(q => Math.max(1, q - 1))}>
+        {/* − ボタン（1のときは押せない） */}
+        <button
+          onClick={() => setQty((q) => Math.max(1, q - 1))}
+          disabled={qty === 1}
+          style={{
+            width: "36px",
+            height: "36px",
+            cursor: qty === 1 ? "not-allowed" : "pointer",
+            opacity: qty === 1 ? 0.4 : 1,
+          }}
+        >
           −
         </button>
 
-        <span>{qty}</span>
+        <span style={{ minWidth: "24px", textAlign: "center" }}>
+          {qty}
+        </span>
 
+        {/* ＋ ボタン（上限あり） */}
         <button
-          onClick={() => setQty(q => Math.min(item.maxQty, q + 1))}
+          onClick={() => setQty((q) => Math.min(item.maxQty, q + 1))}
+          style={{
+            width: "36px",
+            height: "36px",
+          }}
         >
           ＋
         </button>
       </div>
 
-      {/* ✅ カートに追加 → 自動でカートへ */}
+      {/* ===== カートに追加 ===== */}
       <button
         onClick={handleAddToCart}
         style={{
           width: "100%",
-          padding: "10px",
+          padding: "12px",
           backgroundColor: "#4a90e2",
           color: "#fff",
           border: "none",
           borderRadius: "4px",
+          fontSize: "16px",
           cursor: "pointer",
         }}
       >
