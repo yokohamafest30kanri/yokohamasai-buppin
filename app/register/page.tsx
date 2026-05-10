@@ -5,11 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-// 🔥 Firestore
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../lib/firebase";
-
-// ✉️ EmailJS
 import emailjs from "@emailjs/browser";
 
 export default function RegisterPage() {
@@ -21,11 +18,13 @@ export default function RegisterPage() {
   const [contact, setContact] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 合計金額
-  const totalPrice = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
+  // ✅ 追加：模擬店企画じゃないチェック
+  const [isNotMogi, setIsNotMogi] = useState(false);
+
+  // ✅ 合計金額（チェックされていたら0円）
+  const totalPrice = isNotMogi
+    ? 0
+    : cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   const handleSubmit = async () => {
     if (cart.length === 0) {
@@ -36,11 +35,11 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      // ✅ Firestore に登録
       const docRef = await addDoc(collection(db, "registrations"), {
         groupName,
         leaderName,
         contact,
+        isNotMogi,
         items: cart.map((item) => ({
           name: item.name,
           qty: item.qty,
@@ -48,11 +47,10 @@ export default function RegisterPage() {
         totalPrice,
       });
 
-      // ✅ 登録完了メール送信（EmailJS）
       try {
         await emailjs.send(
-          "service_yfa_buppin",     
-          "template_buppin",    
+          "service_yfa_buppin",
+          "template_buppin",
           {
             to_email: contact,
             groupName,
@@ -62,17 +60,13 @@ export default function RegisterPage() {
               .join("\n"),
             totalPrice,
           },
-          "n9TC480wM5ZmokY9N"     // ← Public Key
+          "n9TC480wM5ZmokY9N"
         );
       } catch (mailError) {
         console.error("メール送信エラー:", mailError);
-        // ✅ メール失敗でも登録処理は止めない
       }
 
-      // ✅ 完了ページへ
       router.push(`/register/complete?id=${docRef.id}`);
-
-      // ✅ カートを空に
       clearCart();
     } catch (error) {
       console.error("Firestore保存エラー:", error);
@@ -84,9 +78,27 @@ export default function RegisterPage() {
 
   return (
     <main style={{ padding: "40px" }}>
-      <h1 style={{ fontSize: "28px", fontWeight: "bold", marginBottom: "24px" }}>
+      <h1 style={{ fontSize: "28px", fontWeight: "bold", marginBottom: "12px" }}>
         借用物品登録
       </h1>
+
+      {/* ✅ チェックボックス */}
+      <label
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          marginBottom: "24px",
+          fontSize: "14px",
+        }}
+      >
+        <input
+          type="checkbox"
+          checked={isNotMogi}
+          onChange={(e) => setIsNotMogi(e.target.checked)}
+        />
+        模擬店企画団体ではない場合はチェックしてください。
+      </label>
 
       {/* === カート確認 === */}
       <div
@@ -110,9 +122,13 @@ export default function RegisterPage() {
                 marginBottom: "8px",
               }}
             >
-              <span>{item.name}　{item.qty}個</span>
               <span>
-                {item.price === 0
+                {item.name}　{item.qty}個
+              </span>
+              <span>
+                {isNotMogi
+                  ? "0円"
+                  : item.price === 0
                   ? "0円"
                   : `${item.price * item.qty}円`}
               </span>
