@@ -112,8 +112,8 @@ export default async function ItemDetailPage({ params }: PageProps) {
             }}
         >
           {isExternal
-            ? "学外物品一覧に戻る"
-            : "学内物品一覧に戻る"}
+            ? "学外借用物品一覧に戻る"
+            : "学内借用物品一覧に戻る"}
           </button>
         </Link>
       </div>
