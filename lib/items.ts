@@ -9,7 +9,7 @@ export type Item = {
   imageUrl?: string;
 };
 
-export const items: Item[] = [
+export const internalItems: Item[] = [
   {
     id: "1pa",
     name: "一面パーテーション",
@@ -84,6 +84,19 @@ export const items: Item[] = [
   },
 
 ];
+
+export const externalItems: Item[] = [
+  {
+    id: "tent",
+    name: "テント",
+    maxQty: 3,
+    price: 3000,
+    description: "学外から借用する大型テント",
+    size: "",
+    note: "",
+  },
+];
+
 
   //↓これをコピペ
   /*{
