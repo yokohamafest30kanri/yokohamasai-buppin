@@ -1,10 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function ItemsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
+  // ✅ itemsトップページかどうか
+  const isItemsTopPage = pathname === "/items";
+
   return (
     <>
       {/* ===== items用ヘッダー ===== */}
@@ -30,41 +38,46 @@ export default function ItemsLayout({
 
         {/* 右：学内 / 学外 / カート */}
         <div style={{ display: "flex", gap: "10px" }}>
-          {/* 学内 */}
-          <Link href="/items/internal">
-            <button
-              style={{
-                padding: "6px 10px",
-                backgroundColor: "#ffffff",
-                color: "#333",
-                border: "1px solid #333",
-                borderRadius: "4px",
-                cursor: "pointer",
-                fontSize: "13px",
-              }}
-            >
-              学内借用物品はこちら
-            </button>
-          </Link>
+          {/* ✅ itemsトップページ以外でのみ表示 */}
+          {!isItemsTopPage && (
+            <>
+              {/* 学内 */}
+              <Link href="/items/internal">
+                <button
+                  style={{
+                    padding: "6px 10px",
+                    backgroundColor: "#FFF9C4", // 🟡 学内：薄い黄色
+                    color: "#333",
+                    border: "1px solid #333",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    fontSize: "13px",
+                  }}
+                >
+                  学内借用物品はこちら
+                </button>
+              </Link>
 
-          {/* 学外 */}
-          <Link href="/items/external">
-            <button
-              style={{
-                padding: "6px 10px",
-                backgroundColor: "#ffffff",
-                color: "#333",
-                border: "1px solid #333",
-                borderRadius: "4px",
-                cursor: "pointer",
-                fontSize: "13px",
-              }}
-            >
-              学外借用物品はこちら
-            </button>
-          </Link>
+              {/* 学外 */}
+              <Link href="/items/external">
+                <button
+                  style={{
+                    padding: "6px 10px",
+                    backgroundColor: "#F3E5F5", // 🟣 学外：薄い紫
+                    color: "#333",
+                    border: "1px solid #333",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    fontSize: "13px",
+                  }}
+                >
+                  学外借用物品はこちら
+                </button>
+              </Link>
+            </>
+          )}
 
-          {/* カート */}
+          {/* カート（常に表示） */}
           <Link href="/cart">
             <button
               style={{
@@ -76,7 +89,7 @@ export default function ItemsLayout({
                 cursor: "pointer",
               }}
             >
-              🛒 カート
+              カート
             </button>
           </Link>
         </div>
