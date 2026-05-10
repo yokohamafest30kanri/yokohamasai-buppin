@@ -9,11 +9,10 @@ export default function ItemsLayout({
     <>
       {/* ===== items用ヘッダー ===== */}
       <header
-        style={{    
+        style={{
           position: "sticky",
           top: 0,
           zIndex: 1000,
-
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -23,10 +22,18 @@ export default function ItemsLayout({
           backgroundColor: "#e3f2fd",
         }}
       >
-        <h2 style={{ fontSize: "16px", fontWeight: "bold" }}>
-          30th横浜祭 借用物品登録サイト
-        </h2>
-
+        {/* ✅ タイトルをトップページへのリンクに */}
+        <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <h2
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            30th横浜祭 借用物品登録サイト
+          </h2>
+        </Link>
       </header>
 
       {/* ===== ページ本体 ===== */}
