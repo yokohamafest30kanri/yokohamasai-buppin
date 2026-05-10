@@ -37,29 +37,28 @@ export default function CartPage() {
                 gap: "16px",
               }}
             >
-
               {/* 内容 */}
               <div style={{ flex: 1 }}>
-                <p style={{ marginBottom: "4px" }}>
-                  {item.name}
-                </p>
+                <p style={{ marginBottom: "6px" }}>{item.name}</p>
 
-                {/* ✅ − / 個数 / ＋ */}
+                {/* ✅ − / 個数 / ＋（数量専用） */}
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
                     gap: "8px",
-                    marginBottom: "4px",
+                    marginBottom: "6px",
                   }}
                 >
                   <button
-                    onClick={() => {
-                      if (item.qty === 1) {
-                        removeFromCart(item.id);
-                      } else {
-                        updateQty(item.id, item.qty - 1);
-                      }
+                    onClick={() =>
+                      updateQty(item.id, Math.max(1, item.qty - 1))
+                    }
+                    disabled={item.qty === 1}
+                    style={{
+                      cursor:
+                        item.qty === 1 ? "not-allowed" : "pointer",
+                      opacity: item.qty === 1 ? 0.4 : 1,
                     }}
                   >
                     −
@@ -68,11 +67,12 @@ export default function CartPage() {
                   <span>{item.qty}</span>
 
                   <button
-                    onClick={() => {
-                      if (item.qty < item.maxQty) {
-                        updateQty(item.id, item.qty + 1);
-                      }
-                    }}
+                    onClick={() =>
+                      updateQty(
+                        item.id,
+                        Math.min(item.maxQty, item.qty + 1)
+                      )
+                    }
                   >
                     ＋
                   </button>
@@ -87,7 +87,7 @@ export default function CartPage() {
                 </p>
               </div>
 
-              {/* 削除ボタン */}
+              {/* ✅ 削除ボタン（削除専用） */}
               <button
                 onClick={() => removeFromCart(item.id)}
                 style={{
@@ -95,7 +95,7 @@ export default function CartPage() {
                   color: "#fff",
                   border: "none",
                   borderRadius: "4px",
-                  padding: "6px 10px",
+                  padding: "6px 12px",
                   cursor: "pointer",
                 }}
               >
@@ -122,7 +122,6 @@ export default function CartPage() {
         </Link>
 
         {cart.length === 0 ? (
-
           <button
             disabled
             style={{
@@ -132,7 +131,7 @@ export default function CartPage() {
               color: "#fff",
               cursor: "not-allowed",
             }}
-            >
+          >
             登録へ進む
           </button>
         ) : (
