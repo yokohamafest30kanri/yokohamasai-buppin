@@ -35,7 +35,7 @@ export default function ItemsTopPage() {
                 maxWidth: "300px",
               }}
             >
-              学内借用物品
+              学内借用物品一覧へ
             </button>
           </Link>
         </li>
@@ -68,7 +68,7 @@ export default function ItemsTopPage() {
                 maxWidth: "300px",
               }}
             >
-              学外借用物品
+              学外借用物品一覧へ
             </button>
           </Link>
         </li>
