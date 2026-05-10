@@ -1,20 +1,23 @@
-import { items } from "../../../lib/items";
+import { internalItems, externalItems } from "../../../lib/items";
 import Link from "next/link";
 import ItemDetailClient from "./ItemDetailClient";
 
 type PageProps = {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 };
 
-export default async function ItemDetailPage({ params }: PageProps) {
-  const { id } = await params;
+export default function ItemDetailPage({ params }: PageProps) {
+  const { id } = params;
 
-  const item = items.find((i) => i.id === id);
+  // ✅ 学内・学外を統合
+  const allItems = [...internalItems, ...externalItems];
+
+  const item = allItems.find((i) => i.id === id);
 
   if (!item) {
-    return <p>物品が見つかりません。</p>;
+    return <p style={{ padding: "40px" }}>物品が見つかりません。</p>;
   }
 
   return (
@@ -39,6 +42,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
             写真
           </div>
 
+          {/* ✅ クライアント側処理（数量追加など） */}
           <ItemDetailClient item={item} />
 
           <Link href="/items">
@@ -69,30 +73,30 @@ export default async function ItemDetailPage({ params }: PageProps) {
             {item.name}
           </h2>
 
-          <p style={{ marginBottom: "16px" }}>
-            {item.description}
-          </p>
+          <p style={{ marginBottom: "16px" }}>{item.description}</p>
 
           <div style={{ marginBottom: "24px" }}>
-            <p>上限個数：{item.maxQty} 個</p>
+            <p>上限個数：{item.maxQty} 个</p>
             <p>値段：{item.price === 0 ? "無料" : `${item.price}円`}</p>
           </div>
 
-          <div style={{ marginBottom: "24px" }}>
-            <h3 style={{ fontWeight: "bold", marginBottom: "8px" }}>
-              サイズ
-            </h3>
-            <pre style={{ whiteSpace: "pre-wrap" }}>
-              {item.size}
-            </pre>
-          </div>
+          {item.size && (
+            <div style={{ marginBottom: "24px" }}>
+              <h3 style={{ fontWeight: "bold", marginBottom: "8px" }}>
+                サイズ
+              </h3>
+              <pre style={{ whiteSpace: "pre-wrap" }}>{item.size}</pre>
+            </div>
+          )}
 
-          <div>
-            <h3 style={{ fontWeight: "bold", marginBottom: "8px" }}>
-              備考
-            </h3>
-            <p>{item.note}</p>
-          </div>
+          {item.note && (
+            <div>
+              <h3 style={{ fontWeight: "bold", marginBottom: "8px" }}>
+                備考
+              </h3>
+              <p>{item.note}</p>
+            </div>
+          )}
         </div>
       </div>
     </main>
