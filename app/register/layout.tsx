@@ -23,9 +23,23 @@ export default function ItemsLayout({
           backgroundColor: "#e3f2fd",
         }}
       >
-        <h2 style={{ fontSize: "16px", fontWeight: "bold" }}>
-          30th横浜祭 借用物品登録サイト
-        </h2>
+        <Link
+          href="/"
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            30th横浜祭 借用物品登録サイト
+          </h2>
+        </Link>
 
       </header>
 
