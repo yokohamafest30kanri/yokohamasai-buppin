@@ -112,7 +112,7 @@ export const externalItems: Item[] = [
     price: 5940,
     description: "クレープ等の調理で使用できます。",
     size: "横幅：55cm\n奥行：45cm\n高さ：23cm",
-    note: "ガスはついておりません。ガスも登録してください。",
+    note: "ガスはついておりません。ガスも登録してください。\nクレープ用トンボ・スパチュラがついています。",
     imageUrl: "/items/crepe.jpg",
   },
   {
