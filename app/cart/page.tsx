@@ -122,20 +122,20 @@ export default function CartPage() {
               style={{
                 padding: "10px 14px",
                 border: "1px solid #333",
-                backgroundColor: "#e3f2fd",
+                backgroundColor: "#FFF9C4", // 学内：薄い黄色
                 cursor: "pointer",
               }}
             >
               学内借用物品を追加する
             </button>
-          </Link>
+            </Link>
 
           <Link href="/items/external">
             <button
               style={{
                 padding: "10px 14px",
                 border: "1px solid #333",
-                backgroundColor: "#e3f2fd",
+                backgroundColor: "#F3E5F5", // 学外：薄い紫
                 cursor: "pointer",
               }}
             >
