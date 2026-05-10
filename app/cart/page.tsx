@@ -41,7 +41,7 @@ export default function CartPage() {
               <div style={{ flex: 1 }}>
                 <p style={{ marginBottom: "6px" }}>{item.name}</p>
 
-                {/* ✅ − / 個数 / ＋（数量専用） */}
+                {/* 数量操作 */}
                 <div
                   style={{
                     display: "flex",
@@ -87,7 +87,7 @@ export default function CartPage() {
                 </p>
               </div>
 
-              {/* ✅ 削除ボタン（削除専用） */}
+              {/* 削除ボタン */}
               <button
                 onClick={() => removeFromCart(item.id)}
                 style={{
@@ -106,21 +106,45 @@ export default function CartPage() {
         )}
       </div>
 
-      {/* 下部ボタン */}
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Link href="/items">
-          <button
-            style={{
-              padding: "10px 16px",
-              border: "1px solid #333",
-              backgroundColor: "#eee",
-              cursor: "pointer",
-            }}
-          >
-            物品を追加する
-          </button>
-        </Link>
+      {/* ===== 下部ボタン ===== */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "20px",
+        }}
+      >
+        {/* 左：物品追加 */}
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Link href="/items/internal">
+            <button
+              style={{
+                padding: "10px 14px",
+                border: "1px solid #333",
+                backgroundColor: "#e3f2fd",
+                cursor: "pointer",
+              }}
+            >
+              学内借用物品を追加する
+            </button>
+          </Link>
 
+          <Link href="/items/external">
+            <button
+              style={{
+                padding: "10px 14px",
+                border: "1px solid #333",
+                backgroundColor: "#e3f2fd",
+                cursor: "pointer",
+              }}
+            >
+              学外借用物品を追加する
+            </button>
+          </Link>
+        </div>
+
+        {/* 右：登録へ進む */}
         {cart.length === 0 ? (
           <button
             disabled
