@@ -103,7 +103,8 @@ export const externalItems: Item[] = [
     price: 5940,
     description: "たこ焼き等の調理で使用できます。",
     size: "高さ：51cm\n奥行：26cm\n高さ：18cm",
-    note: "ガスはついておりません。ガスも登録してください。",
+    note: "ガスはついておりません。ガスも登録してください。千枚通し・粉つきがついています。",
+    imageUrl: "/items/takoyaki.jpg",
   },
   {
     id: "crepe",
@@ -139,6 +140,6 @@ export const externalItems: Item[] = [
 
   //imageUrl: "/items/.jpg",
 
-//git add lib/items.ts
+//git add lib/items.ts public/items/.jpg
 //git commit -m "add item list"
 //git push
