@@ -124,6 +124,7 @@ export const externalItems: Item[] = [
     description: "大判焼き等の調理で使用できます。",
     size: "横幅：68cm\n奥行：57cm\n高さ：28cm",
     note: "ガスはついておりません。ガスも登録してください。あんさし・ヘラ・生地落としがついています。",
+    imageUrl: "/items/obanyaki.jpg",
   },
 ];
 
