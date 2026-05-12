@@ -63,6 +63,7 @@ export const internalItems: Item[] = [
     description: "通行人への周知等で使用できます。",
     size: "横幅：50cm\n奥行：30cm\n高さ：120cm",
     note: "特になし",
+    imageUrl: "/items/a3fsb.jpg",
   },
   {
     id: "a1ssb",
