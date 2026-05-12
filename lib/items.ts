@@ -126,6 +126,16 @@ export const externalItems: Item[] = [
     note: "ガスはついておりません。ガスも登録してください。あんさし・ヘラ・生地落としがついています。",
     imageUrl: "/items/obanyaki.jpg",
   },
+  {
+    id: "yakitori",
+    name: "LP焼鳥機",
+    maxQty: 2,
+    price: 4950,
+    description: "焼き鳥等の調理で使用できます。",
+    size: "横幅：60cm\n奥行：14cm\n高さ：15cm",
+    note: "ガスはついておりません。ガスも登録してください。",
+    imageUrl: "/items/yakitori.jpg",
+  },
 ];
 
   //↓これをコピペ
