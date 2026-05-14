@@ -16,8 +16,9 @@ export const internalItems: Item[] = [
     maxQty: 3,
     price: 0,
     description: "展示や仕切りで使用できます。",
-    size: "横幅：100cm\n奥行：3cm\n高さ：170cm",
+    size: "横幅：100cm\n高さ：150cmまたは160cmまたは180cm",
     note: "屋内でのみ使用可能です。",
+    imageUrl: "/items/1pa.jpg",
   },
   {
     id: "2pa",
