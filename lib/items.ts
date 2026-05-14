@@ -13,7 +13,7 @@ export const internalItems: Item[] = [
   {
     id: "1pa",
     name: "一面パーテーション",
-    maxQty: 3,
+    maxQty: 5,
     price: 0,
     description: "展示や仕切りで使用できます。",
     size: "横幅：100cm\n高さ：150cmまたは160cmまたは180cm",
