@@ -36,7 +36,7 @@ export const internalItems: Item[] = [
     maxQty: 1,
     price: 0,
     description: "展示や仕切りで使用できます。",
-    size: "横幅：300cm\n奥行：3cm\n高さ：170cm",
+    size: "横幅：300cm\n高さ：150cm",
     note:"屋内でのみ使用可能です。",
     imageUrl: "/items/3pa.jpg",
   },
@@ -46,8 +46,9 @@ export const internalItems: Item[] = [
     maxQty: 20,
     price: 0,
     description: "仕切りや列整理で使用できます。",
-    size: "長さ200cm",
+    size: "長さ170cm",
     note:"特になし。",
+    imageUrl: "/items/tpa.jpg",
   },
   {
     id: "a3fsw",
@@ -84,8 +85,9 @@ export const internalItems: Item[] = [
     maxQty: 10,
     price: 0,
     description: "ポスターの展示等で使用できます。",
-    size: "横幅：80cm\n奥行：30cm\n高さ：100cm",
+    size: "横幅：60cm\n高さ：120cm",
     note: "特になし",
+    imageUrl: "/items/a1sso.jpg",
   },
 
 ];
