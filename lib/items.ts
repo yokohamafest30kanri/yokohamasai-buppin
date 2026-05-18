@@ -71,6 +71,16 @@ export const internalItems: Item[] = [
     imageUrl: "/items/a3fsb.jpg",
   },
   {
+    id: "a3fsg",
+    name: "A3立て看板(灰)",
+    maxQty: 4,
+    price: 0,
+    description: "通行人への周知等で使用できます。",
+    size: "高さ：120cm",
+    note: "特になし",
+    imageUrl: "/items/a3fsg.jpg",
+  },
+  {
     id: "a1ssb",
     name: "A1サインスタンド(両面)",
     maxQty: 16,
