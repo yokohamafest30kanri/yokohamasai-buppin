@@ -73,11 +73,12 @@ export const internalItems: Item[] = [
   {
     id: "a1ssb",
     name: "A1サインスタンド(両面)",
-    maxQty: 10,
+    maxQty: 16,
     price: 0,
     description: "ポスターの展示等で使用できます。",
-    size: "横幅：80cm\n奥行：30cm\n高さ：100cm",
+    size: "横幅：65cm\n高さ：120cm",
     note: "特になし",
+    imageUrl: "/items/a1ssb.jpg",
   },
   {
     id: "a1sso",
