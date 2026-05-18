@@ -110,6 +110,16 @@ export const internalItems: Item[] = [
     note: "特になし",
     imageUrl: "/items/a1sso.jpg",
   },
+  {
+    id: "ea",
+    name: "イーゼル",
+    maxQty: 75,
+    price: 0,
+    description: "パネル展示等で使用できます。",
+    size: "横幅：45cm\n高さ：95cm~165cm",
+    note: "特になし",
+    imageUrl: "/items/ea.jpg",
+  },
 
 ];
 
