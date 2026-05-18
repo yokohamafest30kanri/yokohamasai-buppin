@@ -23,7 +23,7 @@ export const internalItems: Item[] = [
   {
     id: "2pa",
     name: "二面パーテーション",
-    maxQty: 13,
+    maxQty: 9,
     price: 0,
     description: "展示や仕切りで使用できます。",
     size: "横幅：210cm\n高さ：150cm",
@@ -38,6 +38,7 @@ export const internalItems: Item[] = [
     description: "展示や仕切りで使用できます。",
     size: "横幅：300cm\n奥行：3cm\n高さ：170cm",
     note:"屋内でのみ使用可能です。",
+    imageUrl: "/items/3pa.jpg",
   },
   {
     id: "tpa",
