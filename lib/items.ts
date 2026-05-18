@@ -120,6 +120,16 @@ export const internalItems: Item[] = [
     note: "特になし",
     imageUrl: "/items/ea.jpg",
   },
+  {
+    id: "bf",
+    name: "のぼり",
+    maxQty: 9,
+    price: 0,
+    description: "旗の掲示等で使用できます。",
+    size: "高さ：165cm~230cm",
+    note: "おもり・ポールのセットです。",
+    imageUrl: "/items/bf.jpg",
+  },
 
 ];
 
@@ -185,9 +195,10 @@ export const externalItems: Item[] = [
     description: "",
     size: "横幅：cm\n奥行：cm\n高さ：cm",
     note: "",
+    imageUrl: "/items/.jpg",
   },*/
 
-  //imageUrl: "/items/.jpg",
+  //
 
 //git add lib/items.ts public/items/.jpg
 //git commit -m "add item list"
