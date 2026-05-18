@@ -43,11 +43,11 @@ export const internalItems: Item[] = [
   {
     id: "tpa",
     name: "テープパーテーション",
-    maxQty: 20,
+    maxQty: 17,
     price: 0,
     description: "仕切りや列整理で使用できます。",
     size: "長さ170cm",
-    note:"特になし。",
+    note:"赤3個、青7個、特殊青7個",
     imageUrl: "/items/tpa.jpg",
   },
   {
