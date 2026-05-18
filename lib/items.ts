@@ -81,6 +81,16 @@ export const internalItems: Item[] = [
     imageUrl: "/items/a3fsg.jpg",
   },
   {
+    id: "fs",
+    name: "フロアスタンド",
+    maxQty: 4,
+    price: 0,
+    description: "通行人への周知等で使用できます。",
+    size: "高さ：140cm~230cm",
+    note: "特になし",
+    imageUrl: "/items/fs.jpg",
+  },
+  {
     id: "a1ssb",
     name: "A1サインスタンド(両面)",
     maxQty: 16,
