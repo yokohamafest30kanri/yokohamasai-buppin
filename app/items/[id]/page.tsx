@@ -18,28 +18,46 @@ export default async function ItemDetailPage({ params }: PageProps) {
     return <main style={{ padding: "40px" }}>物品が見つかりません。</main>;
   }
 
-  // ✅ 学外 or 学内 判定
   const isExternal = externalItems.some((i) => i.id === item.id);
 
   return (
-    <main style={{ padding: "40px", maxWidth: "1000px", margin: "0 auto" }}>
-      <h1 style={{ fontSize: "28px", fontWeight: "bold", marginBottom: "24px" }}>
+    <main
+      style={{
+        padding: "20px",
+        maxWidth: "1000px",
+        margin: "0 auto",
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "26px",
+          fontWeight: "bold",
+          marginBottom: "20px",
+        }}
+      >
         物品詳細
       </h1>
 
-      {/* ===== 上段：画像＋情報 ===== */}
-      <div style={{ display: "flex", gap: "32px" }}>
-        {/* 左：画像 */}
+      {/* ===== 上段 ===== */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap", // ✅ スマホで折り返し
+          gap: "24px",
+          justifyContent: "center",
+        }}
+      >
+        {/* ===== 画像 ===== */}
         <div
           style={{
-            width: "360px",
-            height: "360px",
+            width: "100%",
+            maxWidth: "360px",
+            aspectRatio: "1 / 1", // ✅ 正方形維持
             border: "1px solid #999",
             backgroundColor: "#f8f8f8",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            flexShrink: 0,
           }}
         >
           {item.imageUrl ? (
@@ -48,16 +66,25 @@ export default async function ItemDetailPage({ params }: PageProps) {
               alt={item.name}
               width={360}
               height={360}
-              style={{ objectFit: "cover" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
             />
           ) : (
             <span style={{ color: "#666" }}>写真</span>
           )}
         </div>
 
-        {/* 右：説明 */}
-        <div style={{ flex: 1 }}>
-          <h2 style={{ fontSize: "26px", fontWeight: "bold" }}>
+        {/* ===== 説明 ===== */}
+        <div style={{ flex: "1", minWidth: "260px" }}>
+          <h2
+            style={{
+              fontSize: "22px",
+              fontWeight: "bold",
+            }}
+          >
             {item.name}
           </h2>
 
@@ -65,7 +92,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
             {item.description}
           </p>
 
-          <div style={{ marginTop: "20px" }}>
+          <div style={{ marginTop: "16px" }}>
             <p>上限個数：{item.maxQty} 個</p>
             <p>
               通常価格：
@@ -73,23 +100,25 @@ export default async function ItemDetailPage({ params }: PageProps) {
             </p>
           </div>
 
-          <div style={{ marginTop: "24px" }}>
+          <div style={{ marginTop: "20px" }}>
             <h3 style={{ fontWeight: "bold" }}>サイズ</h3>
-            <pre style={{ whiteSpace: "pre-wrap" }}>{item.size}</pre>
+            <pre style={{ whiteSpace: "pre-wrap" }}>
+              {item.size}
+            </pre>
           </div>
 
-          <div style={{ marginTop: "24px" }}>
+          <div style={{ marginTop: "20px" }}>
             <h3 style={{ fontWeight: "bold" }}>備考</h3>
             <p>{item.note}</p>
           </div>
         </div>
       </div>
 
-      {/* ===== カート操作枠 ===== */}
+      {/* ===== カート操作 ===== */}
       <div
         style={{
-          marginTop: "32px",
-          padding: "20px",
+          marginTop: "30px",
+          padding: "16px",
           border: "1px solid #ccc",
           backgroundColor: "#eef6fa",
         }}
@@ -97,23 +126,27 @@ export default async function ItemDetailPage({ params }: PageProps) {
         <ItemDetailClient item={item} />
       </div>
 
-      {/* ✅ 追加：一覧へ戻るボタン ===== */}
-      <div style={{ marginTop: "24px", textAlign: "center" }}>
-        <Link href={isExternal ? "/items/external" : "/items/internal"}>
-        <button
-          style={{
-            padding: "10px 20px",
-            backgroundColor: isExternal
-              ? "#F3E5F5" // 🟣 学外
-              : "#FFF9C4", // 🟡 学内
-            border: "1px solid #333",
-            borderRadius: "4px",
-            cursor: "pointer",
-            }}
+      {/* ===== 戻るボタン ===== */}
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
+        <Link
+          href={isExternal ? "/items/external" : "/items/internal"}
         >
-          {isExternal
-            ? "学外借用物品一覧に戻る"
-            : "学内借用物品一覧に戻る"}
+          <button
+            style={{
+              padding: "12px 20px",
+              width: "100%",
+              maxWidth: "300px", // ✅ スマホで見やすい
+              backgroundColor: isExternal
+                ? "#F3E5F5"
+                : "#FFF9C4",
+              border: "1px solid #333",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
+          >
+            {isExternal
+              ? "学外借用物品一覧に戻る"
+              : "学内借用物品一覧に戻る"}
           </button>
         </Link>
       </div>

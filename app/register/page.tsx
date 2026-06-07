@@ -17,18 +17,33 @@ export default function RegisterPage() {
   const [leaderName, setLeaderName] = useState("");
   const [contact, setContact] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // ✅ 追加：模擬店企画じゃないチェック
   const [isNotMogi, setIsNotMogi] = useState(false);
 
-  // ✅ 合計金額（チェックされていたら0円）
   const totalPrice = isNotMogi
     ? 0
     : cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   const handleSubmit = async () => {
+    // ✅ カートチェック
     if (cart.length === 0) {
       alert("カートが空です");
+      return;
+    }
+
+    // ✅ 空白チェック（trim）
+    if (!groupName.trim() || !leaderName.trim() || !contact.trim()) {
+      alert("すべての項目を入力してください");
+      return;
+    }
+
+    // ✅ メールチェック
+    if (!contact.includes("@")) {
+      alert("正しいメールアドレスを入力してください");
+      return;
+    }
+
+    // ✅ 登録確認（重要）
+    if (!confirm("この内容で登録しますか？")) {
       return;
     }
 
@@ -36,15 +51,16 @@ export default function RegisterPage() {
 
     try {
       const docRef = await addDoc(collection(db, "registrations"), {
-        groupName,
-        leaderName,
-        contact,
+        groupName: groupName.trim(),
+        leaderName: leaderName.trim(),
+        contact: contact.trim(),
         isNotMogi,
         items: cart.map((item) => ({
           name: item.name,
           qty: item.qty,
         })),
         totalPrice,
+        createdAt: new Date(), // ✅ 追加
       });
 
       try {
@@ -62,33 +78,34 @@ export default function RegisterPage() {
           },
           "n9TC480wM5ZmokY9N"
         );
-      } catch (mailError) {
-        console.error("メール送信エラー:", mailError);
+      } catch {
+        // メール失敗は無視
       }
 
       router.push(`/register/complete?id=${docRef.id}`);
       clearCart();
     } catch (error) {
-      console.error("Firestore保存エラー:", error);
-      alert("登録に失敗しました。もう一度お試しください。");
+      console.error(error);
+      alert("登録に失敗しました");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <main style={{ padding: "40px" }}>
-      <h1 style={{ fontSize: "28px", fontWeight: "bold", marginBottom: "12px" }}>
+    <main style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+      {/* タイトル */}
+      <h1 style={{ fontSize: "26px", marginBottom: "10px", fontWeight: "bold" }}>
         借用物品登録
       </h1>
 
-      {/* ✅ チェックボックス */}
+      {/* チェック */}
       <label
         style={{
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           gap: "8px",
-          marginBottom: "24px",
+          marginBottom: "20px",
           fontSize: "14px",
         }}
       >
@@ -100,12 +117,12 @@ export default function RegisterPage() {
         模擬店企画団体ではない場合はチェックしてください。
       </label>
 
-      {/* === カート確認 === */}
+      {/* カート */}
       <div
         style={{
           border: "1px solid #ccc",
           padding: "16px",
-          marginBottom: "30px",
+          marginBottom: "20px",
         }}
       >
         <h2 style={{ marginBottom: "12px" }}>カート</h2>
@@ -118,12 +135,13 @@ export default function RegisterPage() {
               key={item.id}
               style={{
                 display: "flex",
+                flexWrap: "wrap",
                 justifyContent: "space-between",
                 marginBottom: "8px",
               }}
             >
               <span>
-                {item.name}　{item.qty}個
+                {item.name} {item.qty}個
               </span>
               <span>
                 {isNotMogi
@@ -142,12 +160,12 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      {/* === 団体情報 === */}
+      {/* 入力 */}
       <div
         style={{
           border: "1px solid #ccc",
           padding: "16px",
-          marginBottom: "30px",
+          marginBottom: "20px",
         }}
       >
         <h2 style={{ marginBottom: "12px" }}>お客様情報</h2>
@@ -155,40 +173,45 @@ export default function RegisterPage() {
         <div style={{ marginBottom: "12px" }}>
           <label>団体名</label>
           <input
-            type="text"
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
-            style={{ width: "98%", padding: "8px" }}
+            style={{ width: "100%", padding: "10px", marginTop: "4px" }}
           />
         </div>
 
         <div style={{ marginBottom: "12px" }}>
           <label>企画責任者名</label>
           <input
-            type="text"
             value={leaderName}
             onChange={(e) => setLeaderName(e.target.value)}
-            style={{ width: "98%", padding: "8px" }}
+            style={{ width: "100%", padding: "10px", marginTop: "4px" }}
           />
         </div>
 
         <div>
-          <label>連絡先（メールアドレス）</label>
+          <label>メールアドレス</label>
           <input
             type="email"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
-            style={{ width: "98%", padding: "8px" }}
+            style={{ width: "100%", padding: "10px", marginTop: "4px" }}
           />
         </div>
       </div>
 
-      {/* === ボタン === */}
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Link href="/cart">
+      {/* ボタン */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "10px",
+        }}
+      >
+        <Link href="/cart" style={{ width: "100%", maxWidth: "260px" }}>
           <button
             style={{
-              padding: "10px 16px",
+              width: "100%",
+              padding: "12px",
               border: "1px solid #333",
               backgroundColor: "#eee",
             }}
@@ -201,18 +224,20 @@ export default function RegisterPage() {
           onClick={handleSubmit}
           disabled={
             loading ||
-            !groupName ||
-            !leaderName ||
-            !contact ||
+            !groupName.trim() ||
+            !leaderName.trim() ||
+            !contact.trim() ||
             cart.length === 0
           }
           style={{
-            padding: "10px 20px",
+            width: "100%",
+            maxWidth: "260px",
+            padding: "12px",
             backgroundColor:
               loading ||
-              !groupName ||
-              !leaderName ||
-              !contact ||
+              !groupName.trim() ||
+              !leaderName.trim() ||
+              !contact.trim() ||
               cart.length === 0
                 ? "#aaa"
                 : "#4caf50",
@@ -220,9 +245,9 @@ export default function RegisterPage() {
             border: "none",
             cursor:
               loading ||
-              !groupName ||
-              !leaderName ||
-              !contact ||
+              !groupName.trim() ||
+              !leaderName.trim() ||
+              !contact.trim() ||
               cart.length === 0
                 ? "not-allowed"
                 : "pointer",

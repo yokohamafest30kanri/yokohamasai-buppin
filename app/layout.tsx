@@ -1,5 +1,14 @@
 export const dynamic = "force-dynamic";
 
+// ✅ スマホ対応 & 検索対策（超重要）
+export const metadata = {
+  viewport: "width=device-width, initial-scale=1",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 import { CartProvider } from ".././context/CartContext";
 
 export default function RootLayout({
@@ -9,8 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>
-        {/* ✅ ここで包む */}
+      <body
+        style={{
+          margin: 0,               // ✅ 余白バグ防止
+          fontFamily: "sans-serif" // ✅ 読みやすさUP
+        }}
+      >
         <CartProvider>
           {children}
         </CartProvider>
