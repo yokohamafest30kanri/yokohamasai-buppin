@@ -32,7 +32,8 @@ export default function Home() {
               padding: "20px 60px",
               fontSize: "20px",
               borderRadius: "8px",
-              backgroundColor: "#8fb6d9",
+              backgroundColor: "#007BFF", // 青に変更（例）
+              color: "white",             // ← これを追加
               border: "2px solid #333",
               cursor: "pointer",
             }}
