@@ -22,18 +22,21 @@ export default function ItemsLayout({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "12px 20px",
+          padding: "12px 16px",
           borderBottom: "1px solid #ccc",
           marginBottom: "20px",
           backgroundColor: "#e3f2fd",
+          flexWrap: "wrap", // ← スマホ対応
+          gap: "8px",
         }}
       >
-        {/* ✅ 左：タイトル（トップページへのリンク） */}
+        {/* 左：タイトル */}
         <Link
           href="/"
           style={{
             textDecoration: "none",
             color: "inherit",
+            flex: "1 1 auto",
           }}
         >
           <h2
@@ -47,8 +50,15 @@ export default function ItemsLayout({
           </h2>
         </Link>
 
-        {/* 右側（既存のまま） */}
-        <div style={{ display: "flex", gap: "10px" }}>
+        {/* 右側ボタン群 */}
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            flexWrap: "wrap", // ← 折り返し
+            justifyContent: "flex-end",
+          }}
+        >
           {!isItemsTopPage && (
             <>
               <Link href="/items/internal">
@@ -59,7 +69,7 @@ export default function ItemsLayout({
                     border: "1px solid #333",
                     borderRadius: "4px",
                     cursor: "pointer",
-                    fontSize: "13px",
+                    fontSize: "12px",
                   }}
                 >
                   学内借用物品一覧へ
@@ -74,7 +84,7 @@ export default function ItemsLayout({
                     border: "1px solid #333",
                     borderRadius: "4px",
                     cursor: "pointer",
-                    fontSize: "13px",
+                    fontSize: "12px",
                   }}
                 >
                   学外借用物品一覧へ
@@ -92,6 +102,7 @@ export default function ItemsLayout({
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
+                fontSize: "13px",
               }}
             >
               カート
