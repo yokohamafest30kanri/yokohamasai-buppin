@@ -4,7 +4,6 @@ export const dynamic = "force-dynamic";
 export const metadata = {
   title: {
       default: "横浜祭 借用物品登録サイト",
-      template: "%s | 横浜祭 借用物品登録サイト",
     },
   viewport: "width=device-width, initial-scale=1",
   robots: {
