@@ -1,7 +1,3 @@
-export const metadata = {
-  title: "借用物品登録",
-};
-
 "use client";
 
 import { useCart } from "../../context/CartContext";
