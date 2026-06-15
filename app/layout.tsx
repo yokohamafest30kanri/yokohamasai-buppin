@@ -2,6 +2,10 @@ export const dynamic = "force-dynamic";
 
 // ✅ スマホ対応 & 検索対策（超重要）
 export const metadata = {
+  title: {
+      default: "横浜祭 借用物品登録サイト",
+      template: "%s | 横浜祭 借用物品登録サイト",
+    },
   viewport: "width=device-width, initial-scale=1",
   robots: {
     index: false,
