@@ -1,7 +1,3 @@
-export const metadata = {
-  title: "カート",
-};
-
 "use client";
 
 import Link from "next/link";
