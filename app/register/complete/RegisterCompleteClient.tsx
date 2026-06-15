@@ -53,7 +53,7 @@ export default function RegisterCompleteClient() {
         登録完了
       </h1>
 
-      <div style={{ border: "1px solid #ccc", padding: "20px", marginBottom: "24px" }}>
+      <div style={{ border: "1px solid #ccc", padding: "20px", marginBottom: "24px", boxSizing: "border-box" }}>
         <p>団体名：{data.groupName}</p>
         <p>企画責任者名：{data.leaderName}</p>
         <p>連絡先：{data.contact}</p>
