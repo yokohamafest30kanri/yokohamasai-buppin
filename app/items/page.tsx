@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "物品選択",
+};
+
 import Link from "next/link";
 
 export default function ItemsTopPage() {
