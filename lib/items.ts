@@ -281,7 +281,7 @@ export const externalItems: Item[] = [
     price: 3300,
     description: "かき氷の調理で使用できます。",
     size: "横幅：39cm\n奥行：27cm\n高さ：58cm",
-    note: "特になし",
+    note: "ブロック氷のみ使用できます。",
     imageUrl: "/items/.jpg",
   },
   {
@@ -291,7 +291,7 @@ export const externalItems: Item[] = [
     price: 7260,
     description: "かき氷の調理で使用できます。",
     size: "横幅：31cm\n奥行：40cm\n高さ：58cm",
-    note: "特になし",
+    note: "ブロック氷のみ使用できます。",
     imageUrl: "/items/.jpg",
   },
   {
@@ -301,7 +301,7 @@ export const externalItems: Item[] = [
     price: 9900,
     description: "ジュースの冷却に使用できます。",
     size: "横幅：32cm\n奥行：43cm\n高さ：57cm",
-    note: "特になし",
+    note: "3~7℃で温度調節を行えます。",
     imageUrl: "/items/.jpg",
   },
 ];
