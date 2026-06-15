@@ -130,6 +130,26 @@ export const internalItems: Item[] = [
     note: "おもり・ポールのセットです。",
     imageUrl: "/items/bf.jpg",
   },
+  {
+    id: "ld",
+    name: "長机",
+    maxQty: 80,
+    price: 0,
+    description: "受付や展示等で使用できます。",
+    size: "横幅：150cm\n奥行：45cm\n高さ：70cm",
+    note: "模擬店企画には4台配布されます。",
+    imageUrl: "/items/.jpg",
+  },
+  {
+    id: "pchair",
+    name: "パイプ椅子",
+    maxQty: 500,
+    price: 0,
+    description: "椅子として使用できます。",
+    size: "横幅：50cm",
+    note: "模擬店企画には4脚配布されます。",
+    imageUrl: "/items/.jpg",
+  },
 
 ];
 
