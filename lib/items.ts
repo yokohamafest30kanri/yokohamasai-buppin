@@ -148,7 +148,6 @@ export const internalItems: Item[] = [
     description: "椅子として使用できます。",
     size: "横幅：50cm",
     note: "模擬店企画には4脚配布されます。",
-    imageUrl: "/items/.jpg",
   },
 
 ];
