@@ -15,7 +15,7 @@ export default function InternalItemListPage() {
             key={item.id}
             style={{
               display: "flex",
-              flexWrap: "wrap", // ✅ スマホ対応
+              flexWrap: "wrap",
               border: "1px solid #ccc",
               borderRadius: "8px",
               padding: "16px",
@@ -23,12 +23,12 @@ export default function InternalItemListPage() {
               gap: "16px",
             }}
           >
-            {/* ===== 写真 ===== */}
+            {/* ===== 画像 ===== */}
             <div
               style={{
                 width: "100%",
                 maxWidth: "180px",
-                aspectRatio: "1 / 1", // ✅ 崩れ防止
+                aspectRatio: "1 / 1",
               }}
             >
               {item.imageUrl ? (
@@ -72,25 +72,49 @@ export default function InternalItemListPage() {
                 {item.description}
               </p>
 
+              {/* ✅ ここが重要（variation対応） */}
               <ul style={{ marginTop: "12px", fontSize: "14px" }}>
-                <li>上限個数：{item.maxQty} 個</li>
+                {/* 上限 */}
+                <li>
+                  上限個数：
+                  {item.variations
+                    ? `${Math.max(
+                        ...item.variations.map((v) => v.maxQty)
+                      )} 個`
+                    : `${item.maxQty} 個`}
+                </li>
+
+                {/* 値段 */}
                 <li>
                   値段：
-                  {item.price === 0
+                  {item.variations
+                    ? item.variations.every((v) => v.price === 0)
+                      ? " 無料"
+                      : ` ${Math.min(
+                          ...item.variations.map((v) => v.price)
+                        )}円〜`
+                    : item.price === 0
                     ? " 無料"
                     : ` ${item.price}円 / 個`}
                 </li>
               </ul>
 
-              {/* ✅ ボタン */}
+              {/* ✅ variation表示 */}
+              {item.variations && (
+                <p style={{ marginTop: "6px", fontSize: "12px", color: "#555" }}>
+                  ※サイズ選択あり
+                </p>
+              )}
+
+              {/* ボタン */}
               <Link href={`/items/${item.id}`}>
                 <button
                   style={{
                     marginTop: "12px",
-                    width: "100%", // ✅ スマホで押しやすい
+                    width: "100%",
                     maxWidth: "220px",
                     padding: "10px",
-                    backgroundColor: "#FFF9C4", // ✅ 学内カラー
+                    backgroundColor: "#FFF9C4",
                     border: "1px solid #333",
                     borderRadius: "4px",
                     cursor: "pointer",
