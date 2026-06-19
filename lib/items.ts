@@ -355,3 +355,5 @@ export const externalItems: Item[] = [
 //git add lib/items.ts public/items/.jpg
 //git commit -m "add item list"
 //git push
+
+//update
