@@ -318,7 +318,7 @@ export const externalItems: Item[] = [
   id: "nabe",
   name: "鍋",
   description: "ゆでる調理等で使用できます。",
-  size: "",
+  size: "直径30cm\n直径39cm",
   note: "IHに対応しておりません。",
   imageUrl: "/items/nabe.jpg",
   variations: [
