@@ -107,7 +107,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
               </p>
 
               <p style={{ marginTop: "6px" }}>
-                サイズ：直径
+                サイズ：
                 {item.variations.map((v) => v.label).join("〜")}
               </p>
             </div>
