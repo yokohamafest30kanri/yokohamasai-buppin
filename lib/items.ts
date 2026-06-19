@@ -211,7 +211,7 @@ export const externalItems: Item[] = [
     description: "焼きトウモロコシ等の調理で使用できます。",
     size: "横幅：45cm\n奥行：23cm\n高さ：19cm",
     note: "ガスはついておりません。ガスも登録してください。焼き網がついています。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/yakidai.jpg",
   },
   {
     id: "flyer",
@@ -221,7 +221,7 @@ export const externalItems: Item[] = [
     description: "揚げ物の調理で使用できます。",
     size: "横幅：40cm\n奥行：50cm\n高さ：40cm",
     note: "ガスはついておりません。ガスも登録してください。かす取りがついています。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/flyer.jpg",
   },
   {
     id: "steamer",
@@ -231,17 +231,17 @@ export const externalItems: Item[] = [
     description: "蒸し調理で使用できます。",
     size: "2升2段",
     note: "ガスはついておりません。ガスも登録してください。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/steamer.jpg",
   },
   {
     id: "gasstove",
     name: "LPガス台",
     maxQty: 2,
-    price: 0,
+    price: 2640,
     description: "加熱作業に使用できます。",
     size: "横幅：44cm\n奥行：69cm\n高さ：16cm",
     note: "ガスはついておりません。ガスも登録してください。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/gasstove.jpg",
   },
   {
     id: "popcorn",
@@ -251,7 +251,7 @@ export const externalItems: Item[] = [
     description: "ポップコーンの調理に使用できます。",
     size: "横幅：45cm\n奥行：35cm\n高さ：63cm",
     note: "塩味のみ調理可能です。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/popcorn.jpg",
   },
   {
     id: "cottoncandy",
@@ -261,7 +261,7 @@ export const externalItems: Item[] = [
     description: "綿菓子の調理に使用できます。",
     size: "横幅：64cm\n奥行：64cm\n高さ：83cm",
     note: "特になし",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/cottoncandy.jpg",
   },
   {
     id: "warmer",
@@ -271,7 +271,7 @@ export const externalItems: Item[] = [
     description: "提供品の保温に使用できます。",
     size: "横幅：45cm\n奥行：30cm\n高さ：50cm",
     note: "特になし",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/warmer.jpg",
   },
   {
     id: "mkakigori",
@@ -281,7 +281,7 @@ export const externalItems: Item[] = [
     description: "かき氷の調理で使用できます。",
     size: "横幅：39cm\n奥行：27cm\n高さ：58cm",
     note: "ブロック氷のみ使用できます。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/mkakigori.jpg",
   },
   {
     id: "akakigori",
@@ -291,7 +291,7 @@ export const externalItems: Item[] = [
     description: "かき氷の調理で使用できます。",
     size: "横幅：31cm\n奥行：40cm\n高さ：58cm",
     note: "ブロック氷のみ使用できます。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/akakigori.jpg",
   },
   {
     id: "juicedispenser",
@@ -301,7 +301,7 @@ export const externalItems: Item[] = [
     description: "ジュースの冷却に使用できます。",
     size: "横幅：32cm\n奥行：43cm\n高さ：57cm",
     note: "3~7℃で温度調節を行えます。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/juicedispenser.jpg",
   },
 ];
 
