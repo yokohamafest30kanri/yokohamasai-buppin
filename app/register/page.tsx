@@ -19,30 +19,30 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [isNotMogi, setIsNotMogi] = useState(false);
 
+  // ✅ ←ここが重要（price安全化）
   const totalPrice = isNotMogi
     ? 0
-    : cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    : cart.reduce(
+        (sum, item) => sum + (item.price ?? 0) * item.qty,
+        0
+      );
 
   const handleSubmit = async () => {
-    // ✅ カートチェック
     if (cart.length === 0) {
       alert("カートが空です");
       return;
     }
 
-    // ✅ 空白チェック（trim）
     if (!groupName.trim() || !leaderName.trim() || !contact.trim()) {
       alert("すべての項目を入力してください");
       return;
     }
 
-    // ✅ メールチェック
     if (!contact.includes("@")) {
       alert("正しいメールアドレスを入力してください");
       return;
     }
 
-    // ✅ 登録確認（重要）
     if (!confirm("この内容で登録しますか？")) {
       return;
     }
@@ -60,7 +60,7 @@ export default function RegisterPage() {
           qty: item.qty,
         })),
         totalPrice,
-        createdAt: new Date(), // ✅ 追加
+        createdAt: new Date(),
       });
 
       try {
@@ -94,7 +94,6 @@ export default function RegisterPage() {
 
   return (
     <main style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-      {/* タイトル */}
       <h1 style={{ fontSize: "26px", marginBottom: "10px", fontWeight: "bold" }}>
         借用物品登録
       </h1>
@@ -130,28 +129,32 @@ export default function RegisterPage() {
         {cart.length === 0 ? (
           <p>カートに物品が入っていません。</p>
         ) : (
-          cart.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-                marginBottom: "8px",
-              }}
-            >
-              <span>
-                {item.name} {item.qty}個
-              </span>
-              <span>
-                {isNotMogi
-                  ? "0円"
-                  : item.price === 0
-                  ? "0円"
-                  : `${item.price * item.qty}円`}
-              </span>
-            </div>
-          ))
+          cart.map((item) => {
+            const price = item.price ?? 0;
+
+            return (
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "space-between",
+                  marginBottom: "8px",
+                }}
+              >
+                <span>
+                  {item.name} {item.qty}個
+                </span>
+                <span>
+                  {isNotMogi
+                    ? "0円"
+                    : price === 0
+                    ? "0円"
+                    : `${price * item.qty}円`}
+                </span>
+              </div>
+            );
+          })
         )}
 
         <hr style={{ margin: "12px 0" }} />
@@ -175,7 +178,12 @@ export default function RegisterPage() {
           <input
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
-            style={{ width: "100%", padding: "10px", marginTop: "4px" }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "4px",
+              boxSizing: "border-box",
+            }}
           />
         </div>
 
@@ -184,7 +192,12 @@ export default function RegisterPage() {
           <input
             value={leaderName}
             onChange={(e) => setLeaderName(e.target.value)}
-            style={{ width: "100%", padding: "10px", marginTop: "4px" }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "4px",
+              boxSizing: "border-box",
+            }}
           />
         </div>
 
@@ -194,19 +207,18 @@ export default function RegisterPage() {
             type="email"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
-            style={{ width: "100%", padding: "10px", marginTop: "4px" }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: "4px",
+              boxSizing: "border-box",
+            }}
           />
         </div>
       </div>
 
       {/* ボタン */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "10px",
-        }}
-      >
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
         <Link href="/cart" style={{ width: "100%", maxWidth: "260px" }}>
           <button
             style={{
@@ -259,3 +271,4 @@ export default function RegisterPage() {
     </main>
   );
 }
+``
