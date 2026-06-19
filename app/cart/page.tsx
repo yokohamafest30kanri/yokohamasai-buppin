@@ -23,9 +23,9 @@ export default function CartPage() {
           <p>カートに物品が入っていません。</p>
         ) : (
           cart.map((item) => {
-            // ✅ undefined対策
-            const max = item.maxQty ?? 999;
-            const price = item.price ?? 0;
+            // ✅ 型安全（ここが超重要）
+            const max = typeof item.maxQty === "number" ? item.maxQty : 999;
+            const price = typeof item.price === "number" ? item.price : 0;
 
             return (
               <div
@@ -77,17 +77,25 @@ export default function CartPage() {
                     {/* ＋ */}
                     <button
                       onClick={() =>
-                        updateQty(item.id, Math.min(max, item.qty + 1))
+                        updateQty(
+                          item.id,
+                          Math.min(max, item.qty + 1)
+                        )
                       }
-                      disabled={item.maxQty !== undefined && item.qty === max}
+                      disabled={
+                        typeof item.maxQty === "number" &&
+                        item.qty >= item.maxQty
+                      }
                       style={{
                         padding: "4px 10px",
                         cursor:
-                          item.maxQty !== undefined && item.qty === max
+                          typeof item.maxQty === "number" &&
+                          item.qty >= item.maxQty
                             ? "not-allowed"
                             : "pointer",
                         opacity:
-                          item.maxQty !== undefined && item.qty === max
+                          typeof item.maxQty === "number" &&
+                          item.qty >= item.maxQty
                             ? 0.4
                             : 1,
                       }}
@@ -100,7 +108,9 @@ export default function CartPage() {
                   <p style={{ fontSize: "14px", color: "#555" }}>
                     {price === 0
                       ? `0円 × ${item.qty}個 = 0円`
-                      : `${price}円 × ${item.qty}個 = ${price * item.qty}円`}
+                      : `${price}円 × ${item.qty}個 = ${
+                          price * item.qty
+                        }円`}
                   </p>
                 </div>
 
@@ -203,3 +213,4 @@ export default function CartPage() {
     </main>
   );
 }
+``
