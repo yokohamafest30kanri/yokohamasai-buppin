@@ -320,7 +320,7 @@ export const externalItems: Item[] = [
   description: "ゆでる調理等で使用できます。",
   size: "",
   note: "IHに対応しておりません。",
-  imageUrl: "nabe/items/nabe.jpg",
+  imageUrl: "/items/nabe.jpg",
   variations: [
     {
       id: "nabe30",
