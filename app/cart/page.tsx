@@ -8,7 +8,6 @@ export default function CartPage() {
 
   return (
     <main style={{ padding: "20px", maxWidth: "900px", margin: "0 auto" }}>
-      {/* タイトル */}
       <h1
         style={{
           fontSize: "26px",
@@ -19,125 +18,129 @@ export default function CartPage() {
         カート
       </h1>
 
-      {/* カート一覧 */}
       <div style={{ marginBottom: "30px" }}>
         {cart.length === 0 ? (
           <p>カートに物品が入っていません。</p>
         ) : (
-          cart.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                display: "flex",
-                flexWrap: "wrap", // ✅ スマホ対応
-                alignItems: "center",
-                border: "1px solid #ccc",
-                borderRadius: "6px",
-                padding: "12px",
-                marginBottom: "12px",
-                gap: "12px",
-              }}
-            >
-              {/* 内容 */}
-              <div style={{ flex: "1", minWidth: "220px" }}>
-                <p style={{ marginBottom: "6px", fontWeight: "bold" }}>
-                  {item.name}
-                </p>
+          cart.map((item) => {
+            // ✅ undefined対策
+            const max = item.maxQty ?? 999;
+            const price = item.price ?? 0;
 
-                {/* 数量操作 */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    marginBottom: "6px",
-                  }}
-                >
-                  <button
-                    onClick={() =>
-                      updateQty(item.id, Math.max(1, item.qty - 1))
-                    }
-                    disabled={item.qty === 1}
-                    style={{
-                      padding: "4px 10px",
-                      cursor:
-                        item.qty === 1 ? "not-allowed" : "pointer",
-                      opacity: item.qty === 1 ? 0.4 : 1,
-                    }}
-                  >
-                    −
-                  </button>
-
-                  <span>{item.qty}</span>
-
-                  <button
-                    onClick={() =>
-                      updateQty(
-                        item.id,
-                        Math.min(item.maxQty, item.qty + 1)
-                      )
-                    }
-                    disabled={item.qty === item.maxQty}
-                    style={{
-                      padding: "4px 10px",
-                      cursor:
-                        item.qty === item.maxQty
-                          ? "not-allowed"
-                          : "pointer",
-                      opacity: item.qty === item.maxQty ? 0.4 : 1,
-                    }}
-                  >
-                    ＋
-                  </button>
-                </div>
-
-                {/* 金額 */}
-                <p style={{ fontSize: "14px", color: "#555" }}>
-                  {item.price === 0
-                    ? `0円 × ${item.qty}個 = 0円`
-                    : `${item.price}円 × ${item.qty}個 = ${
-                        item.price * item.qty
-                      }円`}
-                </p>
-              </div>
-
-              {/* 削除ボタン */}
-              <button
-                onClick={() => removeFromCart(item.id)}
+            return (
+              <div
+                key={item.id}
                 style={{
-                  padding: "8px 14px",
-                  backgroundColor: "#f44336",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  width: "100%",
-                  maxWidth: "120px", // ✅ スマホでもバランス良い
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  border: "1px solid #ccc",
+                  borderRadius: "6px",
+                  padding: "12px",
+                  marginBottom: "12px",
+                  gap: "12px",
                 }}
               >
-                削除
-              </button>
-            </div>
-          ))
+                {/* 内容 */}
+                <div style={{ flex: "1", minWidth: "220px" }}>
+                  <p style={{ marginBottom: "6px", fontWeight: "bold" }}>
+                    {item.name}
+                  </p>
+
+                  {/* 数量操作 */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    {/* − */}
+                    <button
+                      onClick={() =>
+                        updateQty(item.id, Math.max(1, item.qty - 1))
+                      }
+                      disabled={item.qty === 1}
+                      style={{
+                        padding: "4px 10px",
+                        cursor:
+                          item.qty === 1 ? "not-allowed" : "pointer",
+                        opacity: item.qty === 1 ? 0.4 : 1,
+                      }}
+                    >
+                      −
+                    </button>
+
+                    <span>{item.qty}</span>
+
+                    {/* ＋ */}
+                    <button
+                      onClick={() =>
+                        updateQty(item.id, Math.min(max, item.qty + 1))
+                      }
+                      disabled={item.maxQty !== undefined && item.qty === max}
+                      style={{
+                        padding: "4px 10px",
+                        cursor:
+                          item.maxQty !== undefined && item.qty === max
+                            ? "not-allowed"
+                            : "pointer",
+                        opacity:
+                          item.maxQty !== undefined && item.qty === max
+                            ? 0.4
+                            : 1,
+                      }}
+                    >
+                      ＋
+                    </button>
+                  </div>
+
+                  {/* 金額 */}
+                  <p style={{ fontSize: "14px", color: "#555" }}>
+                    {price === 0
+                      ? `0円 × ${item.qty}個 = 0円`
+                      : `${price}円 × ${item.qty}個 = ${price * item.qty}円`}
+                  </p>
+                </div>
+
+                {/* 削除 */}
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  style={{
+                    padding: "8px 14px",
+                    backgroundColor: "#f44336",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    width: "100%",
+                    maxWidth: "120px",
+                  }}
+                >
+                  削除
+                </button>
+              </div>
+            );
+          })
         )}
       </div>
 
-      {/* ===== 下部ボタン ===== */}
+      {/* ボタン */}
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap", // ✅ スマホで縦並び
+          flexWrap: "wrap",
           gap: "12px",
           justifyContent: "space-between",
         }}
       >
-        {/* 左：追加ボタン */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
           <Link href="/items/internal">
             <button
               style={{
                 padding: "12px",
-                width: "100%", // ✅ スマホ用
+                width: "100%",
                 maxWidth: "260px",
                 border: "1px solid #333",
                 backgroundColor: "#FFF9C4",
@@ -164,7 +167,6 @@ export default function CartPage() {
           </Link>
         </div>
 
-        {/* 右：登録へ進む */}
         <div style={{ width: "100%", maxWidth: "260px" }}>
           {cart.length === 0 ? (
             <button
