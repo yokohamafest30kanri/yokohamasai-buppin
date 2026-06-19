@@ -87,18 +87,33 @@ export default async function ItemDetailPage({ params }: PageProps) {
             {item.description}
           </p>
 
-          {/* ✅ variationがない場合だけ表示 */}
+          {/* ✅ 通常商品 */}
           {!item.variations && (
             <div style={{ marginTop: "16px" }}>
               <p>上限個数：{item.maxQty} 個</p>
               <p>
                 通常価格：
-                {item.price === 0 ? " 無料" : ` ${item.price}円`}
+                {item.price === 0 ? " 無料" : ` ${item.price}円 / 個`}
               </p>
             </div>
           )}
 
-          {/* ✅ サイズ（variationあるときは非表示でもOK） */}
+          {/* ✅ variation商品の追加表示（ここが今回の本体） */}
+          {item.variations && (
+            <div style={{ marginTop: "16px" }}>
+              <p>
+                通常料金：
+                {Math.min(...item.variations.map((v) => v.price))}円 / 個〜
+              </p>
+
+              <p style={{ marginTop: "6px" }}>
+                サイズ：直径
+                {item.variations.map((v) => v.label).join("〜")}
+              </p>
+            </div>
+          )}
+
+          {/* ✅ サイズ（通常商品用） */}
           {item.size && !item.variations && (
             <div style={{ marginTop: "20px" }}>
               <h3 style={{ fontWeight: "bold" }}>サイズ</h3>
@@ -118,7 +133,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* ✅ variation UIはここで出る */}
+      {/* 操作用UI */}
       <div
         style={{
           marginTop: "30px",
@@ -157,3 +172,4 @@ export default async function ItemDetailPage({ params }: PageProps) {
     </main>
   );
 }
+``
