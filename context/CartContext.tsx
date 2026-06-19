@@ -20,7 +20,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // ✅ 初回だけ localStorage から復元
+  // ✅ 初回ロード
   useEffect(() => {
     const stored = localStorage.getItem("cart");
     if (stored) {
@@ -28,7 +28,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // ✅ cart が変わるたびに保存
+  // ✅ 保存
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -37,14 +37,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCart((prev) => {
       const existing = prev.find((c) => c.id === item.id);
 
+      // ✅ maxQty安全化
+      const max =
+        typeof item.maxQty === "number" ? item.maxQty : 999;
+
       if (existing) {
-        const newQty = Math.min(existing.qty + qty, item.maxQty);
+        const newQty = Math.min(existing.qty + qty, max);
         return prev.map((c) =>
           c.id === item.id ? { ...c, qty: newQty } : c
         );
       }
 
-      const initialQty = Math.min(qty, item.maxQty);
+      const initialQty = Math.min(qty, max);
       return [...prev, { ...item, qty: initialQty }];
     });
   };
@@ -55,9 +59,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const updateQty = (id: string, qty: number) => {
     setCart((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, qty } : item
-      )
+      prev.map((item) => {
+        // ✅ maxQty制限もここで安全に
+        const max =
+          typeof item.maxQty === "number" ? item.maxQty : 999;
+
+        return item.id === id
+          ? { ...item, qty: Math.min(qty, max) }
+          : item;
+      })
     );
   };
 
