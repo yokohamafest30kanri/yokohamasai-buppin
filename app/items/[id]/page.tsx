@@ -42,17 +42,17 @@ export default async function ItemDetailPage({ params }: PageProps) {
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap", // ✅ スマホで折り返し
+          flexWrap: "wrap",
           gap: "24px",
           justifyContent: "center",
         }}
       >
-        {/* ===== 画像 ===== */}
+        {/* 画像 */}
         <div
           style={{
             width: "100%",
             maxWidth: "360px",
-            aspectRatio: "1 / 1", // ✅ 正方形維持
+            aspectRatio: "1 / 1",
             border: "1px solid #999",
             backgroundColor: "#f8f8f8",
             display: "flex",
@@ -77,14 +77,9 @@ export default async function ItemDetailPage({ params }: PageProps) {
           )}
         </div>
 
-        {/* ===== 説明 ===== */}
+        {/* 説明 */}
         <div style={{ flex: "1", minWidth: "260px" }}>
-          <h2
-            style={{
-              fontSize: "22px",
-              fontWeight: "bold",
-            }}
-          >
+          <h2 style={{ fontSize: "22px", fontWeight: "bold" }}>
             {item.name}
           </h2>
 
@@ -92,29 +87,38 @@ export default async function ItemDetailPage({ params }: PageProps) {
             {item.description}
           </p>
 
-          <div style={{ marginTop: "16px" }}>
-            <p>上限個数：{item.maxQty} 個</p>
-            <p>
-              通常価格：
-              {item.price === 0 ? " 無料" : ` ${item.price}円`}
-            </p>
-          </div>
+          {/* ✅ variationがない場合だけ表示 */}
+          {!item.variations && (
+            <div style={{ marginTop: "16px" }}>
+              <p>上限個数：{item.maxQty} 個</p>
+              <p>
+                通常価格：
+                {item.price === 0 ? " 無料" : ` ${item.price}円`}
+              </p>
+            </div>
+          )}
 
-          <div style={{ marginTop: "20px" }}>
-            <h3 style={{ fontWeight: "bold" }}>サイズ</h3>
-            <pre style={{ whiteSpace: "pre-wrap" }}>
-              {item.size}
-            </pre>
-          </div>
+          {/* ✅ サイズ（variationあるときは非表示でもOK） */}
+          {item.size && !item.variations && (
+            <div style={{ marginTop: "20px" }}>
+              <h3 style={{ fontWeight: "bold" }}>サイズ</h3>
+              <pre style={{ whiteSpace: "pre-wrap" }}>
+                {item.size}
+              </pre>
+            </div>
+          )}
 
-          <div style={{ marginTop: "20px" }}>
-            <h3 style={{ fontWeight: "bold" }}>備考</h3>
-            <p>{item.note}</p>
-          </div>
+          {/* 備考 */}
+          {item.note && (
+            <div style={{ marginTop: "20px" }}>
+              <h3 style={{ fontWeight: "bold" }}>備考</h3>
+              <p>{item.note}</p>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* ===== カート操作 ===== */}
+      {/* ✅ variation UIはここで出る */}
       <div
         style={{
           marginTop: "30px",
@@ -126,7 +130,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
         <ItemDetailClient item={item} />
       </div>
 
-      {/* ===== 戻るボタン ===== */}
+      {/* 戻る */}
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         <Link
           href={isExternal ? "/items/external" : "/items/internal"}
@@ -135,7 +139,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
             style={{
               padding: "12px 20px",
               width: "100%",
-              maxWidth: "300px", // ✅ スマホで見やすい
+              maxWidth: "300px",
               backgroundColor: isExternal
                 ? "#F3E5F5"
                 : "#FFF9C4",

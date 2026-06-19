@@ -1,12 +1,23 @@
+export type Variation = {
+  id: string;
+  label: string;
+  price: number;
+  maxQty: number;
+};
+
 export type Item = {
   id: string;
   name: string;
-  maxQty: number;
-  price: number;
-  description: string;
-  size: string;
-  note: string;
+
+  // ✅ optionalにする
+  maxQty?: number;
+  price?: number;
+  description?: string;
+  size?: string;
+  note?: string;
+
   imageUrl?: string;
+  variations?: Variation[];
 };
 
 export const internalItems: Item[] = [
@@ -303,6 +314,28 @@ export const externalItems: Item[] = [
     note: "3~7℃で温度調節を行えます。",
     imageUrl: "/items/juicedispenser.jpg",
   },
+  {
+  id: "nabe",
+  name: "鍋",
+  description: "ゆでる調理等で使用できます。",
+  size: "直径30cm\n直径39cm",
+  note: "IHに対応しておりません。",
+  imageUrl: "nabe/items/nabe.jpg",
+  variations: [
+    {
+      id: "nabe30",
+      label: "30cm",
+      price: 660,
+      maxQty: 4,
+    },
+    {
+      id: "nabe39",
+      label: "39cm",
+      price: 990,
+      maxQty: 4,
+    },
+  ],
+}
 ];
 
   //↓これをコピペ

@@ -10,74 +10,130 @@ type Props = {
 };
 
 export default function ItemDetailClient({ item }: Props) {
-  const [qty, setQty] = useState(1);
-  const { addToCart } = useCart();
   const router = useRouter();
+  const { addToCart } = useCart();
 
+  // ✅ variationごとの数量
+  const [quantities, setQuantities] = useState<Record<string, number>>(() => {
+    const initial: Record<string, number> = {};
+    item.variations?.forEach((v) => {
+      initial[v.id] = 0;
+    });
+    return initial;
+  });
+
+  // ✅ 数量変更
+  const updateQty = (id: string, newQty: number, maxQty: number) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: Math.max(0, Math.min(maxQty, newQty)),
+    }));
+  };
+
+  // ✅ カート追加
   const handleAddToCart = () => {
-    addToCart(item, qty);
+    if (!item.variations) return;
 
-    // state反映後に遷移
-    setTimeout(() => {
-      router.push("/cart");
-    }, 0);
+    item.variations.forEach((v) => {
+      const qty = quantities[v.id];
+      if (qty > 0) {
+        addToCart(
+          {
+            id: v.id,
+            name: `${item.name}（${v.label}）`,
+            price: v.price,
+            maxQty: v.maxQty,
+          },
+          qty
+        );
+      }
+    });
+
+    router.push("/cart");
   };
 
   return (
-    <div style={{ marginTop: "15px" }}>
-      {/* ===== 数量操作 ===== */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "12px",
-          marginBottom: "16px",
-        }}
-      >
-        {/* − ボタン（1のときは押せない） */}
-        <button
-          onClick={() => setQty((q) => Math.max(1, q - 1))}
-          disabled={qty === 1}
-          style={{
-            width: "36px",
-            height: "36px",
-            cursor: qty === 1 ? "not-allowed" : "pointer",
-            opacity: qty === 1 ? 0.4 : 1,
-          }}
-        >
-          −
-        </button>
+    <div style={{ marginTop: "20px" }}>
+      {/* ✅ バリエーションUI */}
+      {item.variations &&
+        item.variations.map((v) => {
+          const qty = quantities[v.id];
 
-        <span style={{ minWidth: "24px", textAlign: "center" }}>
-          {qty}
-        </span>
+          return (
+            <div
+              key={v.id}
+              style={{
+                border: "1px solid #ccc",
+                borderRadius: "6px",
+                padding: "12px",
+                marginBottom: "12px",
+                maxWidth: "400px",
+              }}
+            >
+              {/* サイズ */}
+              <p style={{ fontWeight: "bold", marginBottom: "6px" }}>
+                {v.label}
+              </p>
 
-        {/* ＋ ボタン（✅ 上限のときは押せない） */}
-        <button
-          onClick={() => setQty((q) => Math.min(item.maxQty, q + 1))}
-          disabled={qty === item.maxQty}
-          style={{
-            width: "36px",
-            height: "36px",
-            cursor: qty === item.maxQty ? "not-allowed" : "pointer",
-            opacity: qty === item.maxQty ? 0.4 : 1,
-          }}
-        >
-          ＋
-        </button>
-      </div>
+              <p style={{ fontSize: "14px", marginBottom: "8px" }}>
+                {v.price === 0 ? "無料" : `${v.price}円`}
+              </p>
 
-      {/* ===== カートに追加 ===== */}
+              {/* 数量操作 */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                {/* − */}
+                <button
+                  onClick={() => updateQty(v.id, qty - 1, v.maxQty)}
+                  disabled={qty === 0}
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    cursor: qty === 0 ? "not-allowed" : "pointer",
+                    opacity: qty === 0 ? 0.4 : 1,
+                  }}
+                >
+                  −
+                </button>
+
+                <span style={{ minWidth: "20px", textAlign: "center" }}>
+                  {qty}
+                </span>
+
+                {/* ＋ */}
+                <button
+                  onClick={() => updateQty(v.id, qty + 1, v.maxQty)}
+                  disabled={qty === v.maxQty}
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    cursor: qty === v.maxQty ? "not-allowed" : "pointer",
+                    opacity: qty === v.maxQty ? 0.4 : 1,
+                  }}
+                >
+                  ＋
+                </button>
+              </div>
+            </div>
+          );
+        })}
+
+      {/* ✅ カートボタン */}
       <button
         onClick={handleAddToCart}
         style={{
           width: "100%",
-          padding: "12px",
-          backgroundColor: "#4a90e2",
+          maxWidth: "400px",
+          padding: "14px",
+          backgroundColor: "#4caf50",
           color: "#fff",
           border: "none",
-          borderRadius: "4px",
+          borderRadius: "6px",
           fontSize: "16px",
           cursor: "pointer",
         }}
