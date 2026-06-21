@@ -383,7 +383,7 @@ export const externalItems: Item[] = [
     description: "ゆでる調理等で使用できます。",
     size: "46L~161L",
     note: "IHには対応しておりません。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/snabe.jpg",
     variations: [
       {
       id: "snabe46",
@@ -447,7 +447,7 @@ export const externalItems: Item[] = [
     description: "ヨーヨー釣り等で使用できます。",
     size: "横幅：121cm\n奥行：71cm\n高さ：25cm",
     note: "特になし",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/suisoenniti.jpg",
   },
   {
     id: "suiso",
@@ -457,7 +457,7 @@ export const externalItems: Item[] = [
     description: "ペットボトルの販売等で使用できます。",
     size: "横幅：76cm\n奥行：45cm\n高さ：78cm",
     note: "107Lです。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/suiso.jpg",
   },
   {
     id: "sl",
@@ -465,7 +465,7 @@ export const externalItems: Item[] = [
     description: "高所作業で使用できます。",
     size: "高さ120cm~270cm",
     note: "高所作業時には、必ずヘルメットを着用してください。画像は120cmと270cmです。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/sl.jpg",
     variations: [
       {
       id: "sl120",
