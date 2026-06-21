@@ -170,7 +170,26 @@ export const internalItems: Item[] = [
     note: "色・メーカー等は種類によって異なります。",
     imageUrl: "/items/.jpg",
   },
-
+  {
+    id: "cc",
+    name: "カラーコーン",
+    maxQty: 50,
+    price: 0,
+    description: "列整備等で使用できます。",
+    size: "高さ：70cm",
+    note: "各テントに4個配布されます。",
+    imageUrl: "/items/.jpg",
+  },
+  {
+    id: "cb",
+    name: "コーンバー",
+    maxQty: 50,
+    price: 0,
+    description: "列整備等で使用できます。",
+    size: "長さ：150cm",
+    note: "各テントに3本配布されます。",
+    imageUrl: "/items/.jpg",
+  },
 ];
 
 export const externalItems: Item[] = [
@@ -258,19 +277,19 @@ export const externalItems: Item[] = [
     id: "gasstove",
     name: "LPガス台",
     description: "加熱作業に使用できます。",
-    size: "二重・三重",
-    note: "ガスはついておりません。ガスも登録してください。",
+    size: "二重(横幅：33cm/奥行：51cm/高さ：12cm)\n三重(横幅：44cm/奥行：69cm/高さ：16cm)",
+    note: "ガスはついておりません。ガスも登録してください。画像は三重です。",
     imageUrl: "/items/gasstove.jpg",
     variations: [
       {
       id: "gasstove2",
-      label: "二重(横幅：33cm/奥行：51cm/高さ：12cm)",
+      label: "二重",
       price: 60,
       maxQty: 2,
       },
       {
       id: "gasstove3",
-      label: "三重(横幅：44cm/奥行：69cm/高さ：16cm)",
+      label: "三重",
       price: 0,
       maxQty: 2,
       },
@@ -385,7 +404,89 @@ export const externalItems: Item[] = [
       maxQty: 4,
       },
     ],
-  }
+  },
+  {
+    id: "ib",
+    name: "アイスボックス",
+    description: "食品の冷蔵保存等で使用できます。",
+    size: "45L~120L",
+    note: "画像は",
+    imageUrl: "/items/.jpg",
+    variations: [
+      {
+      id: "ib45",
+      label: "45L",
+      price: 60,
+      maxQty: 1,
+      },
+      {
+      id: "ib64",
+      label: "64L",
+      price: 0,
+      maxQty: 1,
+      },
+      {
+      id: "ib90",
+      label: "90L",
+      price: 0,
+      maxQty: 1,
+      },
+      {
+      id: "ib120",
+      label: "120L",
+      price: 0,
+      maxQty: 1,
+      },
+    ],
+  },
+  {
+    id: "suisoenniti",
+    name: "縁日用水槽",
+    maxQty: 2,
+    price: 0,
+    description: "ヨーヨー釣り等で使用できます。",
+    size: "横幅：121cm\n奥行：71cm\n高さ：25cm",
+    note: "特になし",
+    imageUrl: "/items/.jpg",
+  },
+  {
+    id: "suiso",
+    name: "ドブヅケ水槽",
+    maxQty: 2,
+    price: 0,
+    description: "ペットボトルの販売等で使用できます。",
+    size: "横幅：76cm\n奥行：45cm\n高さ：78cm",
+    note: "特になし",
+    imageUrl: "/items/.jpg",
+  },
+  {
+    id: "sl",
+    name: "脚立",
+    description: "高所作業で使用できます。",
+    size: "高さ120cm~270cm",
+    note: "高所作業時には、必ずヘルメットを着用してください。",
+    imageUrl: "/items/.jpg",
+    variations: [
+      {
+      id: "sl120",
+      label: "120cm",
+      price: 0,
+      maxQty: 5,
+      },
+      {
+      id: "sl210",
+      label: "210cm",
+      price: 0,
+      maxQty: 5,
+      },
+      {
+      id: "sl270",
+      label: "270cm",
+      price: 0,
+      maxQty: 5,
+      },
+    ],
+  },
 ];
 
   //↓これをコピペ
