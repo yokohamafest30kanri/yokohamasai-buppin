@@ -160,6 +160,16 @@ export const internalItems: Item[] = [
     size: "横幅：50cm",
     note: "模擬店企画には4脚配布されます。",
   },
+  {
+    id: "reel",
+    name: "ドラムリール",
+    maxQty: 5,
+    price: 0,
+    description: "電源の接続に使用できます。",
+    size: "長さ20m~30m",
+    note: "色・メーカー等は種類によって異なります。",
+    imageUrl: "/items/.jpg",
+  },
 
 ];
 
@@ -247,12 +257,24 @@ export const externalItems: Item[] = [
   {
     id: "gasstove",
     name: "LPガス台",
-    maxQty: 2,
-    price: 2640,
     description: "加熱作業に使用できます。",
-    size: "横幅：44cm\n奥行：69cm\n高さ：16cm",
+    size: "二重・三重",
     note: "ガスはついておりません。ガスも登録してください。",
     imageUrl: "/items/gasstove.jpg",
+    variations: [
+      {
+      id: "gasstove2",
+      label: "二重(横幅：33cm/奥行：51cm/高さ：12cm)",
+      price: 60,
+      maxQty: 2,
+      },
+      {
+      id: "gasstove3",
+      label: "三重(横幅：44cm/奥行：69cm/高さ：16cm)",
+      price: 0,
+      maxQty: 2,
+      },
+    ],
   },
   {
     id: "popcorn",
@@ -315,27 +337,55 @@ export const externalItems: Item[] = [
     imageUrl: "/items/juicedispenser.jpg",
   },
   {
-  id: "nabe",
-  name: "鍋",
-  description: "ゆでる調理等で使用できます。",
-  size: "直径30cm\n直径39cm",
-  note: "IHに対応しておりません。",
-  imageUrl: "/items/nabe.jpg",
-  variations: [
-    {
+    id: "nabe",
+    name: "鍋",
+    description: "ゆでる調理等で使用できます。",
+    size: "直径30cm\n直径39cm",
+    note: "IHに対応しておりません。",
+    imageUrl: "/items/nabe.jpg",
+    variations: [
+      {
       id: "nabe30",
       label: "30cm",
       price: 660,
       maxQty: 4,
-    },
-    {
+      },
+      {
       id: "nabe39",
       label: "39cm",
       price: 990,
       maxQty: 4,
-    },
-  ],
-}
+      },
+    ],
+  },
+  {
+    id: "snabe",
+    name: "寸動鍋",
+    description: "ゆでる調理等で使用できます。",
+    size: "46L~161L",
+    note: "IHには対応しておりません。",
+    imageUrl: "/items/.jpg",
+    variations: [
+      {
+      id: "snabe46",
+      label: "46L",
+      price: 60,
+      maxQty: 4,
+      },
+      {
+      id: "snabe86",
+      label: "86L",
+      price: 0,
+      maxQty: 4,
+      },
+      {
+      id: "snabe161",
+      label: "161L",
+      price: 0,
+      maxQty: 4,
+      },
+    ],
+  }
 ];
 
   //↓これをコピペ
@@ -350,7 +400,28 @@ export const externalItems: Item[] = [
     imageUrl: "/items/.jpg",
   },*/
 
-  //
+  /*{
+    id: "",
+    name: "",
+    description: "",
+    size: "",
+    note: "",
+    imageUrl: "/items/.jpg",
+    variations: [
+      {
+      id: "",
+      label: "",
+      price: 60,
+      maxQty: 0,
+      },
+      {
+      id: "",
+      label: "",
+      price: 0,
+      maxQty: 0,
+      },
+    ],
+  },*/
 
 //git add lib/items.ts public/items/.jpg
 //git commit -m "add item list"
