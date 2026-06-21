@@ -168,7 +168,7 @@ export const internalItems: Item[] = [
     description: "電源の接続に使用できます。",
     size: "長さ20m~30m",
     note: "色・メーカー等は種類によって異なります。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/reel.jpg",
   },
   {
     id: "cc",
@@ -178,7 +178,7 @@ export const internalItems: Item[] = [
     description: "列整備等で使用できます。",
     size: "高さ：70cm",
     note: "各テントに4個配布されます。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/cc.jpg",
   },
   {
     id: "cb",
@@ -188,7 +188,7 @@ export const internalItems: Item[] = [
     description: "列整備等で使用できます。",
     size: "長さ：150cm",
     note: "各テントに3本配布されます。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/cb.jpg",
   },
 ];
 
@@ -456,7 +456,7 @@ export const externalItems: Item[] = [
     price: 0,
     description: "ペットボトルの販売等で使用できます。",
     size: "横幅：76cm\n奥行：45cm\n高さ：78cm",
-    note: "特になし",
+    note: "107Lです。",
     imageUrl: "/items/.jpg",
   },
   {
@@ -464,7 +464,7 @@ export const externalItems: Item[] = [
     name: "脚立",
     description: "高所作業で使用できます。",
     size: "高さ120cm~270cm",
-    note: "高所作業時には、必ずヘルメットを着用してください。",
+    note: "高所作業時には、必ずヘルメットを着用してください。画像は120cmと270cmです。",
     imageUrl: "/items/.jpg",
     variations: [
       {
