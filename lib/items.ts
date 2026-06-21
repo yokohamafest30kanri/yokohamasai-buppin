@@ -149,7 +149,7 @@ export const internalItems: Item[] = [
     description: "受付や展示等で使用できます。",
     size: "横幅：150cm\n奥行：45cm\n高さ：70cm",
     note: "模擬店企画には4台配布されます。",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/ld.jpg",
   },
   {
     id: "pchair",
@@ -159,6 +159,7 @@ export const internalItems: Item[] = [
     description: "椅子として使用できます。",
     size: "横幅：50cm",
     note: "模擬店企画には4脚配布されます。",
+    imageUrl: "/items/pchair.jpg",
   },
   {
     id: "reel",
