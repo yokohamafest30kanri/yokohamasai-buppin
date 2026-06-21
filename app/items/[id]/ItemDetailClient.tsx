@@ -155,4 +155,4 @@ export default function ItemDetailClient({ item }: Props) {
       </button>
     </div>
   );
-}
+} 
