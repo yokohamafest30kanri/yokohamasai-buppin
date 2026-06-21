@@ -411,7 +411,7 @@ export const externalItems: Item[] = [
     description: "食品の冷蔵保存等で使用できます。",
     size: "45L~120L",
     note: "画像は",
-    imageUrl: "/items/.jpg",
+    imageUrl: "/items/ib.jpg",
     variations: [
       {
       id: "ib45",
