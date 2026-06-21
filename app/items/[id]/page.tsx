@@ -98,7 +98,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* ✅ variation商品の追加表示（ここが今回の本体） */}
+          {/* ✅ variation商品の表示 */}
           {item.variations && (
             <div style={{ marginTop: "16px" }}>
               <p>
@@ -106,15 +106,19 @@ export default async function ItemDetailPage({ params }: PageProps) {
                 {Math.min(...item.variations.map((v) => v.price))}円 / 個〜
               </p>
 
-              <p style={{ marginTop: "6px" }}>
-                サイズ：
-                {item.variations.map((v) => v.label).join("〜")}
-              </p>
+              {/* ✅ variation一覧（サイズじゃなく選択肢として表示） */}
+              <ul style={{ marginTop: "8px", paddingLeft: "16px" }}>
+                {item.variations.map((v) => (
+                  <li key={v.id}>
+                    {v.label}（最大 {v.maxQty}）
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
 
-          {/* ✅ サイズ（通常商品用） */}
-          {item.size && !item.variations && (
+          {/* ✅ サイズ（常に表示 ←ここが重要修正） */}
+          {item.size && (
             <div style={{ marginTop: "20px" }}>
               <h3 style={{ fontWeight: "bold" }}>サイズ</h3>
               <pre style={{ whiteSpace: "pre-wrap" }}>
@@ -147,9 +151,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
 
       {/* 戻る */}
       <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <Link
-          href={isExternal ? "/items/external" : "/items/internal"}
-        >
+        <Link href={isExternal ? "/items/external" : "/items/internal"}>
           <button
             style={{
               padding: "12px 20px",
@@ -172,4 +174,3 @@ export default async function ItemDetailPage({ params }: PageProps) {
     </main>
   );
 }
-``
