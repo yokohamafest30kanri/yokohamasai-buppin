@@ -98,7 +98,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* ✅ variation商品の表示 */}
+          {/* ✅ variation商品 */}
           {item.variations && (
             <div style={{ marginTop: "16px" }}>
               <p>
@@ -106,7 +106,6 @@ export default async function ItemDetailPage({ params }: PageProps) {
                 {Math.min(...item.variations.map((v) => v.price))}円 / 個〜
               </p>
 
-              {/* ✅ variation一覧（サイズじゃなく選択肢として表示） */}
               <ul style={{ marginTop: "8px", paddingLeft: "16px" }}>
                 {item.variations.map((v) => (
                   <li key={v.id}>
@@ -117,7 +116,7 @@ export default async function ItemDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* ✅ サイズ（常に表示 ←ここが重要修正） */}
+          {/* ✅ サイズ */}
           {item.size && (
             <div style={{ marginTop: "20px" }}>
               <h3 style={{ fontWeight: "bold" }}>サイズ</h3>
@@ -127,7 +126,15 @@ export default async function ItemDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* 備考 */}
+          {/* ✅ ガス（←ここに配置した） */}
+          {item.gas && (
+            <div style={{ marginTop: "20px" }}>
+              <h3 style={{ fontWeight: "bold" }}>ガス使用量</h3>
+              <p>{item.gas}</p>
+            </div>
+          )}
+
+          {/* ✅ 備考 */}
           {item.note && (
             <div style={{ marginTop: "20px" }}>
               <h3 style={{ fontWeight: "bold" }}>備考</h3>
