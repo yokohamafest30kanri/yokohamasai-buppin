@@ -305,6 +305,51 @@ export const externalItems: Item[] = [
     ],
   },
   {
+    id: "lp",
+    name: "プロパンガス",
+    description: "加熱調理用のガスです。",
+    size: "5kg~20kg\n1口または2口",
+    note: "2つの調理器具を使う場合は、2口の利用を推奨します。ガスの使用量は各自で計算してください。",
+    variations: [
+      {
+      id: "lp51",
+      label: "5kg・1口",
+      price: 4950,
+      maxQty: 2,
+      },
+      {
+      id: "lp52",
+      label: "5kg・2口",
+      price: 4950,
+      maxQty: 2,
+      },
+      {
+      id: "lp101",
+      label: "10kg・1口",
+      price: 6600,
+      maxQty: 2,
+      },
+      {
+      id: "lp102",
+      label: "10kg・2口",
+      price: 6600,
+      maxQty: 2,
+      },
+      {
+      id: "lp201",
+      label: "20kg・1口",
+      price: 12375,
+      maxQty:2,
+      },
+      {
+      id: "lp202",
+      label: "20kg・2口",
+      price: 12375,
+      maxQty: 2,
+      },
+    ],
+  },
+  {
     id: "popcorn",
     name: "ポップコーン機",
     maxQty: 2,
