@@ -15,7 +15,7 @@ export type Item = {
   description?: string;
   size?: string;
   note?: string;
-
+  gas?: string;
   imageUrl?: string;
   variations?: Variation[];
 };
@@ -201,6 +201,7 @@ export const externalItems: Item[] = [
     price: 5940,
     description: "鉄板系の調理で使用できます。",
     size: "横幅：60cm\n奥行：55cm\n高さ：18cm",
+    gas:"2日間で最大7.52kg使用します。",
     note: "ガスはついておりません。ガスも登録してください。",
     imageUrl: "/items/teppan.jpg",
   },
@@ -211,6 +212,7 @@ export const externalItems: Item[] = [
     price: 5940,
     description: "たこ焼き等の調理で使用できます。",
     size: "高さ：51cm\n奥行：26cm\n高さ：18cm",
+    gas:"2日間で最大3.88kg使用します。",
     note: "ガスはついておりません。ガスも登録してください。千枚通し・粉つきがついています。",
     imageUrl: "/items/takoyaki.jpg",
   },
@@ -221,6 +223,7 @@ export const externalItems: Item[] = [
     price: 5940,
     description: "クレープ等の調理で使用できます。",
     size: "横幅：55cm\n奥行：45cm\n高さ：23cm",
+    gas:"2日間で最大5.92kg使用します。",
     note: "ガスはついておりません。ガスも登録してください。クレープ用トンボ・スパチュラがついています。",
     imageUrl: "/items/crepe.jpg",
   },
@@ -231,6 +234,7 @@ export const externalItems: Item[] = [
     price: 9900,
     description: "大判焼き等の調理で使用できます。",
     size: "横幅：68cm\n奥行：57cm\n高さ：28cm",
+    gas:"2日間で最大12.16kg使用します。",
     note: "ガスはついておりません。ガスも登録してください。あんさし・ヘラ・生地落としがついています。",
     imageUrl: "/items/obanyaki.jpg",
   },
@@ -241,6 +245,7 @@ export const externalItems: Item[] = [
     price: 4950,
     description: "焼き鳥等の調理で使用できます。",
     size: "横幅：60cm\n奥行：14cm\n高さ：15cm",
+    gas:"2日間で最大6.72kg使用します。",
     note: "ガスはついておりません。ガスも登録してください。",
     imageUrl: "/items/yakitori.jpg",
   },
@@ -251,6 +256,7 @@ export const externalItems: Item[] = [
     price: 4950,
     description: "焼きトウモロコシ等の調理で使用できます。",
     size: "横幅：45cm\n奥行：23cm\n高さ：19cm",
+    gas:"2日間で最大10.72kg使用します。",
     note: "ガスはついておりません。ガスも登録してください。焼き網がついています。",
     imageUrl: "/items/yakidai.jpg",
   },
@@ -261,6 +267,7 @@ export const externalItems: Item[] = [
     price: 11880,
     description: "揚げ物の調理で使用できます。",
     size: "横幅：40cm\n奥行：50cm\n高さ：40cm",
+    gas:"2日間で最大8.64kg使用します。",
     note: "ガスはついておりません。ガスも登録してください。かす取りがついています。",
     imageUrl: "/items/flyer.jpg",
   },
@@ -279,6 +286,7 @@ export const externalItems: Item[] = [
     name: "LPガス台",
     description: "加熱作業に使用できます。",
     size: "二重(横幅：33cm/奥行：51cm/高さ：12cm)\n三重(横幅：44cm/奥行：69cm/高さ：16cm)",
+    gas:"二重(2日間で最大8.36kg使用します。)\n三重(2日間で最大15.2kg使用します。)",
     note: "ガスはついておりません。ガスも登録してください。画像は三重です。",
     imageUrl: "/items/gasstove.jpg",
     variations: [
