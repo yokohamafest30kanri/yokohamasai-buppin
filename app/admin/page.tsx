@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-// 🔥 Firebase
+// Firebase
 import { auth, db } from "../../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import {
@@ -30,7 +30,7 @@ export default function AdminPage() {
   const [list, setList] = useState<RegisterData[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // ✅ ログインチェック（Firebase Auth）
+  // ✅ ログインチェック
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (!user) {
@@ -41,10 +41,12 @@ export default function AdminPage() {
     return () => unsubscribeAuth();
   }, [router]);
 
-  // ✅ Firestore リアルタイム購読
+  // ✅ Firestore（ここ重要）
   useEffect(() => {
-    const q = 
-      collection(db, "registrations");
+    const q = query(
+      collection(db, "registrations"),
+      orderBy("createdAt", "desc") // ✅ 新しい順
+    );
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
@@ -59,7 +61,7 @@ export default function AdminPage() {
     return () => unsubscribe();
   }, []);
 
-  // ✅ 削除処理
+  // ✅ 削除
   const handleDelete = async (id: string) => {
     const ok = window.confirm("この登録を削除しますか？");
     if (!ok) return;
@@ -117,7 +119,7 @@ export default function AdminPage() {
               position: "relative",
             }}
           >
-            {/* 削除ボタン */}
+            {/* ✅ 削除 */}
             <button
               onClick={() => handleDelete(data.id)}
               style={{
@@ -133,6 +135,14 @@ export default function AdminPage() {
             >
               削除
             </button>
+
+            {/* ✅ 日付（追加） */}
+            <p style={{ fontSize: "12px", color: "#666" }}>
+              登録日時：
+              {data.createdAt?.toDate
+                ? data.createdAt.toDate().toLocaleString()
+                : ""}
+            </p>
 
             <p>
               <strong>団体名：</strong>
